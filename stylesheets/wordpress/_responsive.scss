@@ -138,17 +138,17 @@ img {
 }
 
 // 16/9 embed
-.embed-16-9 {
+.entry-content-asset {
   @include responsive-embed(16/9);
 }
 
 // 4/3 embed
-.embed-4-3 {
+.entry-content-asset-4-3 {
   @include responsive-embed(4/3);
 }
 
 // default 1 ratio for a square embed
-.embed-1-1 {
+.entry-content-asset-1-1 {
   @include responsive-embed;
 }
 

@@ -12,7 +12,7 @@
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 		<header><?php _e( 'Link', 'starter' ); ?></header>
 		<div class="entry-content">
-			<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'starter' ) ); ?>
+			<?php the_content( __( 'Continue reading', 'starter' ) ); ?>
 		</div>
 
 		<footer class="entry-meta">

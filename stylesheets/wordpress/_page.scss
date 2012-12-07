@@ -24,16 +24,94 @@
       }
     }
   }
-  #comment-section {
-    border-top: 1px dashed white;
-    padding-top: 2em;
+.comments-area {
+  border-top: 1px dashed white;
+  padding-top: 2em;
+  ol.commentlist {
+    list-style: none;
+    margin: 0 0 1em;
+    padding: 0;
+    text-indent: 0;
+    li {
+      &.alt!, &.bypostauthor!, &.byuser!, &.comment-author-admin! {}
+      &.comment {
+        border-bottom: 1px dotted #666;
+        padding: 1em;
+        .vcard {
+		  @extend .sans-font;
+          font-size: 16px;
+		  font-weight: bold;
+          cite.fn {
+            font-style: normal;
+            a.url! {}
+          }
+          img {
+            &.avatar {
+              border: 5px solid #ccc;
+              float: right;
+              margin: 0 0 1em 1em;
+            }
+            &.avatar-32!, &.photo! {}
+          }
+          span.says! {}
+        }
+        .comment-meta a {
+          color: #ccc;
+        }
+        p {
+          font-size: 1em;
+          margin: 0 0 1em;
+        }
+        ul {
+          font-size: 1em;
+          list-style: square;
+          margin: 0 0 1em 2em;
+        }
+        div.reply {
+          font-size: 11px;
+		  text-align: right;
+          a {
+            font-weight: bold;
+          }
+        }
+        ul.children {
+          list-style: none;
+          margin: 1em 0 0;
+          text-indent: 0;
+          li {
+            &.alt!, &.bypostauthor!, &.byuser!, &.comment!, &.comment-author-admin! {}
+            &.depth-2 {
+              border-left: 5px solid #555;
+              margin: 0 0 .25em .25em;
+            }
+            &.depth-3 {
+              border-left: 5px solid #999;
+              margin: 0 0 .25em .25em;
+            }
+            &.depth-4 {
+              border-left: 5px solid #bbb;
+              margin: 0 0 .25em .25em;
+            }
+            &.depth-5!, &.odd! {}
+          }
+        }
+      }
+      &.even {
+        background: #fff;
+      }
+      &.odd {
+        background: #f6f6f6;
+      }
+      &.parent {
+        border-left: 5px solid #111;
+      }
+      &.thread-alt!, &.thread-even!, &.thread-odd! {}
+    }
   }
+}
   .entry-meta {
     padding: 0.2em 0.8em;
     margin: 0.8em -0.4em 1em;
-    background: $body-bg;
-    @include border-radius(1.5em);
-    @include box-shadow(darken($body-bg, 5), 1px, 1px, 1px);
     .edit-link {
       float: right;
       color: desaturate(darken($body-bg, 30), 15);
@@ -43,23 +121,28 @@
         color: desaturate(darken($body-bg, 50), 15);
       }
     }
+	.author-info {
+	    padding: 0.8em;
+	    margin-top: 0.8em;
+	    background: $body-bg;
+	    @include border-radius(3px);
+	    @include box-shadow(darken($body-bg, 5), 1px, 1px, 1px);
+		.author-avatar {
+			float: left;
+			padding: 5px;
+			background: #fff;
+			border: 1px solid #f8f8f8;
+		}
+		.author-description {
+			float: right;
+			width: 460px;
+		}
+	}
   }
   .more-link {
-    background: lighten($body-bg, 2);
     @extend .heading-font;
-    @include text-shadow(white);
-    line-height: 1.5em;
-    padding: 0.5em 1em;
-    display: inline-block;
-    width: auto;
-    margin: 1em 0;
-    @extend .round-right-corners;
-    border: 1px dashed darken($body-bg, 4);
-    border-left: 0;
     &:hover {
-      background: darken($body-bg, 2);
-      border-color: darken($body-bg, 8);
-      text-decoration: none;
+      text-decoration: underline;
     }
     &:after {
       content: "\FFEB";
@@ -99,57 +182,11 @@
       }
     }
   }
-  .post {
-    img, video, .video object {
-      max-width: $inner-width - 20px - 2px;
-      display: block;
-      background: white;
-      padding: 10px;
-      border: 1px solid #e5e5e5;
-      margin: 0 auto;
-      @include box-shadow(#eeeeee, 0, 2px, 5px);
-    }
-    video, .video, .video object {
-      display: block;
-    }
-    .img-wrap + .img-wrap, img + img, video + video, .video + .video {
-      margin-top: 1em;
-    }
-    .img-wrap {
-      display: block;
-      background: white;
-      padding: 10px;
-      border: 1px solid #e5e5e5;
-      margin: 0 auto;
-      position: relative;
-      @include box-shadow(#eeeeee, 0, 2px, 5px);
-      img {
-        display: block;
-        background: none;
-        padding: 0;
-        border: 0;
-        margin: 0 auto;
-        @extend .clear-box-shadow;
-      }
-      .caption {
-        color: white;
-        display: block;
-        background-color: black;
-        background: rgba(0, 0, 0, 0.4);
-        padding: 0.4em 5px;
-        text-align: center;
-        position: absolute;
-        bottom: 10px;
-        @include text-shadow(rgba(0, 0, 0, 0.5));
-        &:before {
-          content: "\201c";
-          padding-right: 2px;
-        }
-        &:after {
-          content: "\201d";
-          padding-left: 2px;
-        }
-      }
-    }
+  .page-numbers {
+      @extend .navigation;
+	  li {
+		  list-style-type: none;
+		  float: left;
+	  }
   }
 }

@@ -21,7 +21,7 @@
 			/*
 			 * Print the <title> tag based on what is being viewed.
 			 * We filter the output of wp_title() a bit -- see
-			 * bsth_filter_wp_title() in functions.php.
+			 * starter_filter_wp_title() in functions.php.
 			 */
 			wp_title( '|', true, 'right' );
 
@@ -38,6 +38,10 @@
 			 */
 			wp_head();
 		?>
+
+		<!--[if lt IE 9]>
+		<link href="<?php echo get_template_directory_uri();?>/stylesheets/ie.css" media="all" rel="stylesheet">
+		<![endif]-->
 
 		<?php if ( wp_count_posts()->publish > 0 ) : ?>
 			<link rel="alternate" type="application/rss+xml" title="<?php echo get_bloginfo( 'name' ); ?> Feed" href="<?php echo home_url(); ?>/feed/">

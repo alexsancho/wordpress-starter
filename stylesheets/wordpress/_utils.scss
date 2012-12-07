@@ -49,7 +49,7 @@
   }
 }
 
-.visually-hidden, .vh {
+.visually-hidden, .vh, .assistive-text {
   @extend .visuallyhidden;
 }
 
