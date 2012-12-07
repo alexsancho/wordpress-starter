@@ -1,0 +1,40 @@
+@import "compass";
+
+@include global-reset;
+@include reset-html5;
+
+// base classes
+.round-corners {
+  @include border-radius(6px);
+}
+
+.round-right-corners {
+  @extend .round-corners;
+  @extend .clear-left-rounding;
+}
+
+.round-left-corners {
+  @extend .round-corners;
+  @extend .clear-right-rounding;
+}
+
+.round-top-corners {
+  @extend .round-corners;
+  @extend .clear-bottom-rounding;
+}
+
+.round-bottom-corners {
+  @extend .round-corners;
+  @extend .clear-top-rounding;
+}
+
+.clear {
+  @include pie-clearfix;
+}
+
+.hover-underline {
+  @extend .clear-underline;
+  &:hover {
+    text-decoration: underline;
+  }
+}

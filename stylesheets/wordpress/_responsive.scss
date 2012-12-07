@@ -1,0 +1,143 @@
+/**
+ * Responsive WordPress Core Theme Styles
+ * http://jeffsebring.com/responsive-wordpress-images/
+--------------------------------------------------- */
+
+.sticky, .bypostauthor, .gallery-caption {
+  display: normal;
+}
+
+.alignnone {
+  margin: 1em 1em 1em 0;
+}
+
+.aligncenter, div.aligncenter {
+  display: block;
+  margin: .5em auto;
+}
+
+.alignright {
+  float: right;
+  margin: 0 0 1em 1em;
+}
+
+.alignleft {
+  float: left;
+  margin: 0 1em 1em 0;
+}
+
+.aligncenter {
+  display: block;
+  margin: 1em auto;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  &[class*="align"], &[class*="wp-image-"] {
+    max-width: 100%;
+    height: auto;
+  }
+  &.wp-smiley {
+    border: none;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding: 0;
+  }
+  &.alignright {
+    margin-left: 1em 0 1em 1em;
+  }
+  &.alignleft {
+    margin: 1em 1em 1em 0;
+  }
+  &.aligncenter {
+    display: block;
+    margin: 1em auto;
+  }
+  &#wpstats {
+    display: block;
+    margin: 0 auto;
+  }
+  &[class*="align"], &[class*="wp-image-"] {
+    border: none;
+  }
+}
+
+.gallery .gallery-icon img {
+  border: none;
+}
+
+.wp-caption {
+  margin-bottom: 1em;
+  margin-left: 0;
+  max-width: 96%;
+  text-align: center;
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.wp-caption-text {
+  position: relative;
+  font-size: .8em;
+}
+
+.gallery {
+  margin: 0 auto;
+  .gallery-item {
+    margin: 0;
+    float: left;
+    text-align: center;
+    width: 33%;
+  }
+  a img {
+    border: none;
+  }
+}
+
+.gallery-columns-4 .gallery-item {
+  width: 25%;
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.comments ol {
+  padding-left: 0;
+  li {
+    margin: 0;
+  }
+}
+
+.comment-author {
+  padding: 0;
+  text-decoration: none;
+}
+
+@media only screen and (max-width: 800px) {
+  embed, object {
+    max-width: 100%;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .gallery-columns-3 .gallery-item {
+    width: 33.33%;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .gallery-columns-2 .gallery-item {
+    width: 50%;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}

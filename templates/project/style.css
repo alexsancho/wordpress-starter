@@ -1,0 +1,14 @@
+/*
+Theme Name: A WordPress Theme
+Theme URI:
+Description: Use this theme to start your Theme development.
+Author: Alex Sancho
+Author URI: http://alexsancho.name/
+Template: base
+Version: 1.0
+Tags:
+*/
+
+@import url('stylesheets/screen.css') screen;
+@import url('stylesheets/print.css') print;
+

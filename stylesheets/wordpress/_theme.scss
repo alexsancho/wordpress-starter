@@ -1,0 +1,55 @@
+$body-bg: #e9f2f7;
+$header-bg: whitesmoke;
+$page-bg: white;
+$link-color: desaturate(#0c78d1, 40);
+$heading-color: #333333;
+
+html, body {
+  background-color: $body-bg;
+  color: #444444;
+}
+
+h1 {
+  a {
+    @extend .h1-font;
+    line-height: 0.8em;
+    text-decoration: none;
+    color: $heading-color;
+    letter-spacing: -1px;
+    padding-top: 0.11em;
+    @include text-shadow(white, 1px, 1px, 1px);
+  }
+  text-align: center;
+  & + p {
+    color: #666666;
+    font-size: 1.3em;
+    text-align: center;
+  }
+}
+
+#page {
+  background: white;
+  border: 1px solid darken($body-bg, 4);
+  @include background-clip(padding-box);
+  @extend .round-corners;
+  @include box-shadow(darken($body-bg, 3), 0, 2px, 15px);
+  a {
+    color: $link-color;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+#footer {
+  font-size: 0.9em;
+  color: desaturate(darken($body-bg, 20), 28);
+  a {
+    color: desaturate(darken($body-bg, 28), 28);
+    text-decoration: underline;
+    &:hover {
+      color: desaturate(darken($body-bg, 40), 28);
+    }
+  }
+}
