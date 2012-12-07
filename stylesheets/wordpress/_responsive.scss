@@ -8,9 +8,9 @@ $responsive-embeds-default-ratio : 1 !default;
   padding-top: 30px; /* IE6 workaround*/
   height: 0;
   overflow: hidden;
-  & iframe,
-  & object,
-  & embed {
+  iframe,
+  object,
+  embed {
       position: absolute;
       top: 0;
       left: 0;
@@ -148,7 +148,7 @@ img {
 }
 
 // default 1 ratio for a square embed
-@embed-1-1 {
+.embed-1-1 {
   @include responsive-embed;
 }
 
