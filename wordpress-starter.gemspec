@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.summary = %q{This is a blank WordPress theme configured to use Sass.}
   s.authors = ["Alex Sancho"]
   s.email = ["alex@alexsancho.name"]
-  s.homepage = "http://github.com"
+  s.homepage = "https://github.com/alexsancho/wordpress-starter"
 
   # Gem Files
   s.files = ["README.md"]
