@@ -21,9 +21,12 @@ What this does is call `compass`, requires the wordpress-starter extension, uses
 Note on Patches/Pull Requests
 ==============================
 
-* Fork the project!
-* Develop your feature or bug fix.
-* Send your pull request. Bonus points for usage of topic branches.
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
+
 
 Copyright
 ===========

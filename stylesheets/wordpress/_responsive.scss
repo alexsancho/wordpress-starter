@@ -1,3 +1,24 @@
+// Default settings
+$responsive-embeds-default-ratio : 1 !default;
+
+// $ratio : any valid ratio like 16/9, 4/3...
+@mixin responsive-embed($ratio: $responsive-embeds-default-ratio) {
+  position: relative;
+  padding-bottom: 100%/$ratio;
+  padding-top: 30px; /* IE6 workaround*/
+  height: 0;
+  overflow: hidden;
+  & iframe,
+  & object,
+  & embed {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+  }
+}
+
 /**
  * Responsive WordPress Core Theme Styles
  * http://jeffsebring.com/responsive-wordpress-images/
@@ -114,6 +135,21 @@ img {
 .comment-author {
   padding: 0;
   text-decoration: none;
+}
+
+// 16/9 embed
+.embed-16-9 {
+  @include responsive-embed(16/9);
+}
+
+// 4/3 embed
+.embed-4-3 {
+  @include responsive-embed(4/3);
+}
+
+// default 1 ratio for a square embed
+@embed-1-1 {
+  @include responsive-embed;
 }
 
 @media only screen and (max-width: 800px) {

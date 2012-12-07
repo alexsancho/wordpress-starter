@@ -10,14 +10,8 @@
   font-family: "Menlo", "Bitstream Vera Sans", Monaco, "Andale Mono", "Lucida Console", monospace;
 }
 
-/* If you'd prefer to use ChunkFive (also free) switch them out below, or use whatever you want */
-
-@include font-face("Megalopolis", font-files("megalopolisextra", woff, "megalopolisextra.ttf", truetype, "megalopolisextra.svg#webfontTi2cg57S", svg), "megalopolisextra.eot");
-
-//@include font-face("ChunkFive", font-files("Chunkfive-webfont", woff, "Chunkfive-webfont.ttf", truetype, "Chunkfive-webfont.svg#webfontb5K2fJwj", svg), 'Chunkfive-webfont.eot')
-
 .heading-font {
-  font-family: "Megalopolis", arial, serif;
+  @extend .sans-font;
   font-style: normal;
   font-weight: normal;
 }

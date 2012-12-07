@@ -14,7 +14,7 @@ Compass::Frameworks.register('wordpress', :path => extension_path)
 # Version is a number. If a version contains alphas, it will be created as
 # a prerelease version
 # Date is in the form of YYYY-MM-DD
-module Extension
+module WordpressStarter
   VERSION = "0.1"
   DATE = "2012-12-06"
 end

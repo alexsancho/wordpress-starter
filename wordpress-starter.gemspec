@@ -2,8 +2,8 @@
 require './lib/wordpress-starter'
 
 Gem::Specification.new do |s|
-  s.version = Extension::VERSION
-  s.date = Extension::DATE
+  s.version = WordpressStarter::VERSION
+  s.date = WordpressStarter::DATE
 
   # Gem Details
   s.name = "wordpress-starter"
@@ -14,8 +14,9 @@ Gem::Specification.new do |s|
   s.homepage = "https://github.com/alexsancho/wordpress-starter"
 
   # Gem Files
-  s.files = ["README.md"]
-  s.files += ["CHANGELOG.md"]
+  s.files = ["CHANGELOG.md"]
+  s.files += ["LICENSE"]
+  s.files += ["README.md"]
   s.files += Dir.glob("lib/**/*.*")
   s.files += Dir.glob("stylesheets/**/*.*")
   s.files += Dir.glob("templates/**/*.*")
