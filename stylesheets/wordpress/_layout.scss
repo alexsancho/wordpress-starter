@@ -1,7 +1,9 @@
-$page-width: 682px;
+$page-width: 940px;
 $page-pad: 30px;
 $page-border: 1px;
 $inner-width: $page-width - $page-pad * 2;
+$side-width: ( ( $page-width / 12 ) * 4 ) - $page-pad * 2;
+$main-width: ( ( $page-width / 12 ) * 8 ) - $page-pad;
 
 .page-width {
   @extend .clear;
@@ -12,6 +14,17 @@ $inner-width: $page-width - $page-pad * 2;
 #page {
   @extend .page-width;
   padding: $page-pad;
+}
+
+#page #sidebar {
+    width: $side-width;
+	float: left;
+	padding-right: $page-pad;
+}
+
+#page #main {
+    width: $main-width;
+	float: left;
 }
 
 #header {

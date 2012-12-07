@@ -4,15 +4,14 @@
  *
  * @category  Theme
  * @package   [starter]
- * @author    Alex Sancho
- * @copyright 2012 Alex Sancho
- * @license   http://opensource.org/licenses/mit-license.php MIT Licensed
+ * @author    [Your Name]
+ * @copyright 2012 [Your Name]
  */
 ?>
 
 	<article id="post-0" class="post no-results not-found">
 		<header class="entry-header">
-			<h1 class="entry-title"><?php _e( 'Nothing Found', 'starter' ); ?></h1>
+			<h2 class="entry-title"><?php _e( 'Nothing Found', 'starter' ); ?></h2>
 		</header>
 
 		<div class="entry-content">

@@ -4,15 +4,14 @@
  *
  * @category  Theme
  * @package   [starter]
- * @author    Alex Sancho
- * @copyright 2012 Alex Sancho
- * @license   http://opensource.org/licenses/mit-license.php MIT Licensed
+ * @author    [Your Name]
+ * @copyright 2012 [Your Name]
  */
 ?>
 
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 		<header class="entry-header">
-			<h1 class="entry-title"><?php the_title(); ?></h1>
+			<h2 class="entry-title"><?php the_title(); ?></h2>
 		</header>
 
 		<div class="entry-content">

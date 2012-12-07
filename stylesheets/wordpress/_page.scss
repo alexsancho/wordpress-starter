@@ -5,7 +5,7 @@
     &:first-child {
       padding-top: 0;
     }
-    &.single .article {
+    &.single .entry-content {
       padding-bottom: 2em;
       border-bottom: 1px dashed $body-bg;
     }
@@ -28,13 +28,13 @@
     border-top: 1px dashed white;
     padding-top: 2em;
   }
-  .pubdate {
+  .entry-meta {
     padding: 0.2em 0.8em;
     margin: 0.8em -0.4em 1em;
     background: $body-bg;
     @include border-radius(1.5em);
     @include box-shadow(darken($body-bg, 5), 1px, 1px, 1px);
-    .edit {
+    .edit-link {
       float: right;
       color: desaturate(darken($body-bg, 30), 15);
       text-decoration: none;
@@ -67,11 +67,11 @@
       padding-left: 5px;
     }
   }
-  .pagination {
+  .navigation {
     @extend .clear;
     padding-top: 1em;
     @extend .heading-font;
-    .next, .prev {
+    .nav-next, .nav-previous {
       a {
         color: #888888;
         text-decoration: none;
@@ -80,7 +80,7 @@
         }
       }
     }
-    .next {
+    .nav-next {
       display: inline-block;
       float: right;
       a:after {
@@ -89,7 +89,7 @@
         padding-left: 5px;
       }
     }
-    .prev {
+    .nav-previous {
       display: inline-block;
       float: left;
       a:before {

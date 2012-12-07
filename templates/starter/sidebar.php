@@ -2,13 +2,10 @@
 /**
  * The sidebar template.
  *
- * Copyright (c) 2012, Alex Sancho
- *
  * @category  Theme
  * @package   [starter]
- * @author    Alex Sancho
- * @copyright 2012 Alex Sancho
- * @license   http://opensource.org/licenses/mit-license.php MIT Licensed
+ * @author    [Your Name]
+ * @copyright 2012 [Your Name]
  */
 ?>
 	<aside id="sidebar" role="complementary">

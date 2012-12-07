@@ -8,9 +8,8 @@
  *
  * @category  Theme
  * @package   [starter]
- * @author    Alex Sancho
- * @copyright 2012 Alex Sancho
- * @license   http://opensource.org/licenses/mit-license.php MIT Licensed
+ * @author    [Your Name]
+ * @copyright 2012 [Your Name]
  */
 
 	get_header();
@@ -22,23 +21,25 @@
 			<header class="archive-header">
 				<h1 class="archive-title"><?php printf( __( 'Category Archives: %s', 'starter' ), '<span>' . single_cat_title( '', false ) . '</span>' ); ?></h1>
 
-			<?php if ( category_description() ) : // Show an optional category description ?>
+	<?php
+	if ( category_description() ):
+		// Show an optional category description ?>
 				<div class="archive-meta"><?php echo category_description(); ?></div>
-			<?php endif; ?>
+	<?php endif; ?>
 			</header>
-<?php
-				/* Start the Loop */
-				while ( have_posts() ):
-					the_post();
+	<?php
+	/* Start the Loop */
+	while ( have_posts() ):
+		the_post();
 
-					get_template_part( 'content', get_post_format() );
-				endwhile;
+		get_template_part( 'content', get_post_format() );
+	endwhile;
 
-				do_action( 'pagination' );
+	do_action( 'pagination' );
 
-			else:
-				get_template_part( 'content', 'none' );
-			endif;
+	else:
+		get_template_part( 'content', 'none' );
+	endif;
 ?>
 		</div>
 	</section>

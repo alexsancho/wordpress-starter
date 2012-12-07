@@ -2,13 +2,10 @@
 /**
  * The Header for our theme.
  *
- * Copyright (c) 2012, Alex Sancho
- *
  * @category  Theme
  * @package   [starter]
- * @author    Alex Sancho
- * @copyright 2012 Alex Sancho
- * @license   http://opensource.org/licenses/mit-license.php MIT Licensed
+ * @author    [Your Name]
+ * @copyright 2012 [Your Name]
  */
 ?><!DOCTYPE html>
 <!--[if IEMobile 7 ]> <html <?php language_attributes(); ?>class="no-js iem7"> <![endif]-->
@@ -42,8 +39,8 @@
 			wp_head();
 		?>
 
-		<?php if (wp_count_posts()->publish > 0) : ?>
-		<link rel="alternate" type="application/rss+xml" title="<?php echo get_bloginfo('name'); ?> Feed" href="<?php echo home_url(); ?>/feed/">
+		<?php if ( wp_count_posts()->publish > 0 ) : ?>
+			<link rel="alternate" type="application/rss+xml" title="<?php echo get_bloginfo( 'name' ); ?> Feed" href="<?php echo home_url(); ?>/feed/">
 		<?php endif; ?>
 	</head>
 	<body id="inner-page" <?php body_class(); ?>>
@@ -55,5 +52,6 @@
 				<h2 class="assistive-text"><?php bloginfo( 'description' );?></h2>
 			</hgroup>
 		</header>
-		<?php get_sidebar(); ?>
-		<section id="main" role="document">
+		<div id="page">
+			<?php get_sidebar(); ?>
+			<section id="main" role="document">

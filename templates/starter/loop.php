@@ -9,30 +9,28 @@
  *
  * @category  Theme
  * @package   [starter]
- * @author    Alex Sancho
- * @copyright 2012 Alex Sancho
- * @license   http://opensource.org/licenses/mit-license.php MIT Licensed
+ * @author    [Your Name]
+ * @copyright 2012 [Your Name]
  */
 ?>
 	<div id="primary" class="site-content">
 		<div id="content" role="main">
 <?php
-	/* If there are no posts to display, such as an empty archive page */
-	if ( have_posts() ):
+/* If there are no posts to display, such as an empty archive page */
+if ( have_posts() ):
+	while ( have_posts() ):
+		the_post();
 
-		while ( have_posts() ):
-			the_post();
+		get_template_part( 'content', get_post_format() );
 
-			get_template_part( 'content', get_post_format() );
+		comments_template( '', true );
+	endwhile;
 
-			comments_template( '', true );
-		endwhile;
-
-		/* Display navigation to next/previous pages when applicable */
-		do_action( 'pagination' );
-	else:
-		get_template_part( 'content', 'none' );
-	endif;
+	/* Display navigation to next/previous pages when applicable */
+	do_action( 'pagination' );
+else:
+	get_template_part( 'content', 'none' );
+endif;
 ?>
 		</div>
 	</div>

@@ -4,13 +4,10 @@
  *
  * For more information on hooks, actions, and filters, see http://codex.wordpress.org/Plugin_API.
  *
- * Copyright (c) 2012, Alex Sancho
- *
  * @category  Theme
  * @package   [starter]
- * @author    Alex Sancho
- * @copyright 2012 Alex Sancho
- * @license   http://opensource.org/licenses/mit-license.php MIT Licensed
+ * @author    [Your Name]
+ * @copyright 2012 [Your Name]
  */
 
 /**
@@ -127,7 +124,7 @@ add_filter( 'the_generator', '__return_false' );
  * @return void
  */
 function starter_enqueue_scripts() {
-	$theme  = wp_get_theme();
+	$theme   = wp_get_theme();
 	$version = $theme['Version'];
 
 	wp_deregister_script( 'jquery' );
@@ -137,7 +134,7 @@ function starter_enqueue_scripts() {
 	 *  We add some JavaScript to pages with the comment form
 	 * to support sites with threaded comments (when in use).
 	 */
-	 if ( is_singular() and comments_open() and get_option( 'thread_comments' ) ) {
+	if ( is_singular() and comments_open() and get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 
@@ -154,7 +151,7 @@ add_action( 'wp_enqueue_scripts', 'starter_enqueue_scripts' );
  * @return void
  */
 function starter_enqueue_styles() {
-	$theme  = wp_get_theme();
+	$theme   = wp_get_theme();
 	$version = $theme['Version'];
 
 	wp_enqueue_style( 'app', get_stylesheet_uri(), false, $version, 'all' );
@@ -169,7 +166,7 @@ add_action( 'wp_enqueue_scripts', 'starter_enqueue_styles' );
  * @return string misc
  */
 function starter_header() {
-?>
+	?>
 	<!-- For third-generation iPad with high-resolution Retina display: -->
 	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144x144-precomposed.png?1333401433">
 	<!-- For iPhone with high-resolution Retina display: -->
@@ -180,7 +177,7 @@ function starter_header() {
 	<link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png?1333401433">
 	<!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
 	<link rel="shortcut icon" href="favicon.ico?1333401433" type="image/x-icon" />
-<?php
+	<?php
 	do_action( 'starter_header' );
 }
 
@@ -203,7 +200,6 @@ add_action( 'wp_footer', 'starter_footer', 10 );
  * @return void
  */
 function starter_widgets_init() {
-	register_sidebar(
 	register_sidebar(
 		array(
 			'name'          => __( 'Primary widget area', 'starter' ),
@@ -233,14 +229,16 @@ function starter_entry_meta() {
 	// Translators: used between list items, there is a space after the comma.
 	$tag_list = get_the_tag_list( '', __( ', ', 'starter' ) );
 
-	$date = sprintf( '<a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s">%4$s</time></a>',
+	$date = sprintf(
+		'<a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s">%4$s</time></a>',
 		esc_url( get_permalink() ),
 		esc_attr( get_the_time() ),
 		esc_attr( get_the_date( 'c' ) ),
 		esc_html( get_the_date() )
 	);
 
-	$author = sprintf( '<span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s</a></span>',
+	$author = sprintf(
+		'<span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s</a></span>',
 		esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
 		esc_attr( sprintf( __( 'View all posts by %s', 'starter' ), get_the_author() ) ),
 		get_the_author()
@@ -249,9 +247,11 @@ function starter_entry_meta() {
 	// Translators: 1 is category, 2 is tag, 3 is the date and 4 is the author's name.
 	if ( $tag_list ) {
 		$utility_text = __( 'This entry was posted in %1$s and tagged %2$s on %3$s<span class="by-author"> by %4$s</span>.', 'starter' );
-	} elseif ( $categories_list ) {
+	}
+	elseif ( $categories_list ) {
 		$utility_text = __( 'This entry was posted in %1$s on %3$s<span class="by-author"> by %4$s</span>.', 'starter' );
-	} else {
+	}
+	else {
 		$utility_text = __( 'This entry was posted on %3$s<span class="by-author"> by %4$s</span>.', 'starter' );
 	}
 
@@ -273,21 +273,23 @@ function pagination( $query = false ) {
 	global $wp_query;
 
 	if ( is_single() ) {
-?>
-	<nav id="comment-nav-below" class="navigation" role="navigation">
-		<h1 class="assistive-text section-heading"><?php _e( 'Post Navigation', 'starter' ); ?></h1>
-		<?php if ( $previous = get_previous_post() ):?>
-			<div class="nav-previous alignleft">
-				<a href="<?php echo get_permalink( $previous );?>" title="<?php printf( __( 'Permalink to %s', 'starter' ), get_the_title( $previous ));?>"><?php _e( '&larr; Previous', 'starter' ); ?></a>
-			</div>
-		<?php endif;?>
-		<?php if ( $next = get_next_post() ):?>
-			<div class="nav-next alignright">
-				<a href="<?php echo get_permalink( $next );?>" title="<?php printf( __( 'Permalink to %s', 'starter' ), get_the_title( $next ));?>"><?php _e( 'Next &rarr;', 'starter' ); ?></a>
-			</div>
-		<?php endif;?>
-	</nav>
-<?php
+		?>
+		<nav id="comment-nav-below" class="navigation" role="navigation">
+			<h1 class="assistive-text section-heading"><?php _e( 'Post Navigation', 'starter' ); ?></h1>
+		<?php
+		if ( $previous = get_previous_post() ):?>
+				<div class="nav-previous alignleft">
+					<a href="<?php echo get_permalink( $previous );?>" title="<?php printf( __( 'Permalink to %s', 'starter' ), get_the_title( $previous ) );?>"><?php _e( '&larr; Previous', 'starter' ); ?></a>
+				</div>
+			<?php endif;?>
+		<?php
+		if ( $next = get_next_post() ):?>
+				<div class="nav-next alignright">
+					<a href="<?php echo get_permalink( $next );?>" title="<?php printf( __( 'Permalink to %s', 'starter' ), get_the_title( $next ) );?>"><?php _e( 'Next &rarr;', 'starter' ); ?></a>
+				</div>
+			<?php endif;?>
+		</nav>
+		<?php
 	}
 	else {
 		if ( $wp_query->max_num_pages > 1 ) {
@@ -313,9 +315,9 @@ function pagination( $query = false ) {
 						'total'     => $wp_query->max_num_pages,
 						'mid_size'  => 5,
 						'prev_next' => True,
-						'prev_text' => __('<'),
-						'next_text' => __('>'),
-						'type'      => 'list'
+						'prev_text' => __( '<' ),
+						'next_text' => __( '>' ),
+						'type'      => 'list',
 					)
 				);
 
@@ -340,20 +342,22 @@ add_action( 'pagination', 'pagination' );
  */
 function starter_comment( $comment, $args, $depth ) {
 	$GLOBALS['comment'] = $comment;
-	switch ( $comment->comment_type ) :
-		case '' :
-			$show_avatar = get_option( 'show_avatars' ) ? '' : 'no-avatar';
-	?>
-	<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
+	switch ( $comment->comment_type ):
+	case '' :
+		$show_avatar = get_option( 'show_avatars' ) ? '' : 'no-avatar';
+		?>
+		<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
 		<div id="comment-<?php comment_ID(); ?>" class="row">
-			<?php if ( get_option( 'show_avatars' ) ):?>
+		<?php
+		if ( get_option( 'show_avatars' ) ):?>
 				<div class="alignleft">
 					<?php echo get_avatar( $comment, 68 );?>
 				</div>
 			<?php endif;?>
 			<div class="alignright">
 				<div class="comment-author vcard">
-					<?php if ($comment->comment_approved == '0') : ?>
+		<?php
+		if ( $comment->comment_approved == '0' ) : ?>
 						<p class="meta"><span class="label"><em><?php _e( 'Your comment is on the moderation queue', 'starter' ); ?></em></span></p>
 					<?php else:?>
 						<?php printf( __( '%s', 'starter' ), sprintf( '<cite class="fn">%s</cite>', get_comment_author_link() ) ); ?>
@@ -368,11 +372,11 @@ function starter_comment( $comment, $args, $depth ) {
 			</div>
 		</div>
 	<?php
-			break;
-		case 'pingback'  :
-		case 'trackback' :
-	?>
-	<li class="post pingback">
+		break;
+	case 'pingback'  :
+	case 'trackback' :
+		?>
+		<li class="post pingback">
 		<p><?php _e( 'Pingback:', 'starter' ); ?> <?php comment_author_link(); ?><?php edit_comment_link( __( '(Edit)', 'starter' ), ' ' ); ?></p>
 	<?php
 			break;
