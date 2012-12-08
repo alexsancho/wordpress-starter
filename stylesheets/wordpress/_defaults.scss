@@ -1,11 +1,30 @@
-@import "compass";
-
-@include global-reset;
-@include reset-html5;
-
 // base classes
+.alignnone {
+  margin: 1em 1em 1em 0;
+}
+
+.aligncenter, div.aligncenter {
+  display: block;
+  margin: .5em auto;
+}
+
+.alignright {
+  float: right;
+  margin: 0 0 1em 1em;
+}
+
+.alignleft {
+  float: left;
+  margin: 0 1em 1em 0;
+}
+
+.aligncenter {
+  display: block;
+  margin: 1em auto;
+}
+
 .round-corners {
-  @include border-radius(6px);
+  @include border-radius($radius);
 }
 
 .round-right-corners {
@@ -26,10 +45,6 @@
 .round-bottom-corners {
   @extend .round-corners;
   @extend .clear-top-rounding;
-}
-
-.clear {
-  @include pie-clearfix;
 }
 
 .hover-underline {

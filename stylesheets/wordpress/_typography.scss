@@ -1,19 +1,19 @@
 .sans-font {
-  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-family: $sans-serif;
 }
 
 .serif-font {
-  font-family: Georgia, Times, "Times New Roman", serif;
+  font-family: $serif;
 }
 
 .fixed-font {
-  font-family: "Menlo", "Bitstream Vera Sans", Monaco, "Andale Mono", "Lucida Console", monospace;
+  font-family: $monospace;
 }
 
 .heading-font {
   @extend .sans-font;
   font-style: normal;
-  font-weight: normal;
+  font-weight: 400;
 }
 
 .h1-font {
@@ -21,79 +21,87 @@
 }
 
 strong {
-  font-weight: bold;
+  font-weight: 600;
 }
 
 em {
   font-style: italic;
 }
 
+// Establish Vertical rhythm.
+@include establish-baseline;
+
+html {
+	// Override the default line height to allow for smaller baseline increments.
+	@include adjust-leading-to(4);
+}
+
 body {
-  font-size: 16px;
   @extend .sans-font;
-  line-height: 1.45em;
 }
 
 p {
-  padding-bottom: 1em;
+  margin: 0 0 rhythm(2);
 }
 
 #{headings(2, 6)} {
   @extend .heading-font;
-  margin-bottom: 0.1em;
-  line-height: 1.2em;
 }
 
 h6 {
-  font-size: 1.1em;
+    @include adjust-font-size-to($fs-h6);
+    @include rhythm(4, 0, 0, 0, $fs-h6);
+	letter-spacing: .03em;
+	text-transform: uppercase;
 }
 
 h5 {
-  font-size: 1.3em;
+    @include adjust-font-size-to($fs-h5);
+    @include rhythm(4, 0, 0, 0, $fs-h5);
 }
 
 h4 {
-  font-size: 1.5em;
+    @include adjust-font-size-to($fs-h4);
+    @include rhythm(4, 0, 0, 0, $fs-h4);
 }
 
 h3 {
-  font-size: 2em;
+    @include adjust-font-size-to($fs-h3);
+    @include rhythm(2, 0, 0, 2, $fs-h3);
 }
 
 h2 {
-  font-size: 3em;
+    @include adjust-font-size-to($fs-h2);
+    @include rhythm(0, 0, 0, 1, $fs-h2);
 }
 
 h1 {
-  font-size: 4.8em;
-  margin-bottom: 0;
+	@include adjust-font-size-to($fs-h1);
+	@include rhythm(0, 0, 0, 1, $fs-h1);
 }
 
 h1.entry-title, .author-description h2 {
-	@extend h3;
-	text-align: left;
+    @include adjust-font-size-to($fs-h2);
+    @include rhythm(1, 0, 0, 0, $fs-h1);
+	@include trailer;
 }
 
-h2.entry-title, h2.comments-title, .entry-header h2 {
+h2.entry-title, h2.comments-title, .entry-header h2, h3#reply-title {
 	@extend h4;
 }
 
-p, ul, ol {
-  padding-bottom: 1.1em;
+dl, ul, ol {
+  margin-bottom: rhythm(3);
 }
 
 blockquote {
-  border-left: 4px solid #ccc;
-  margin: 1.5em 10px;
-  padding: .5em 10px;
+  @include leading-border(2px, .5);
+  @include trailing-border(2px, .5);
   quotes: "\201C""\201D""\2018""\2019";
   &:before {
-    color: #ccc;
+    color: $function-color-dark;
     content: open-quote;
-    font-size: 4em;
-    line-height: .1em;
-    margin-right: .25em;
-    vertical-align: -0.4em;
+    @include adjust-font-size-to($fs-h1);
   }
   p {
     display: inline;
@@ -102,10 +110,17 @@ blockquote {
 
 #sidebar {
   h3 {
-    font-size: 1.6em;
+    @include adjust-font-size-to(16px);
   }
   h4 {
-    font-size: 1.3em;
+    @include adjust-font-size-to(13px);
+  }
+  li {
+      @include rhythm(0, 0, 0, 0, 16px);
+	  a {
+	      @include adjust-font-size-to(16px);
+	      @include rhythm(0, 0, 0, 0, 16px);
+	  }
   }
 }
 

@@ -1,74 +1,92 @@
 #page {
   .post {
-    padding: 2.5em 0;
-    border-bottom: 1px solid $body-bg;
+	  @extend .clearfix;
+	@include trailing-border(1px, 4, 18px, solid);
+	padding-top: 30px;
+    border-color: $brand-color;
     &:first-child {
       padding-top: 0;
     }
     &.single .entry-content {
-      padding-bottom: 2em;
-      border-bottom: 1px dashed $body-bg;
+      border-bottom: 1px dashed $brand-color;
     }
-    #{headings(2, 6)} {
-      color: #444444;
+	header .wp-post-image {
+		max-width: 180px;
+		height: auto;
+		float: left;
+		@include rhythm(0, 0, 0, 0, 16px);
+		@include rhythm-borders(1px, 1, 16px, solid);
+		margin-right: 15px;
+		border-color: $function-color;
+		background: $white;
+	}
+    #{headings(1, 6)} {
+      color: $function-color-darker;
     }
-    h2 {
+    h1 {
+		@include rhythm(1, 0, 1, 0, 32px);
+	    @include adjust-font-size-to(32px);
       a {
-        color: #333333;
+        color: $brand-color-dark;
       }
       &:hover {
-        color: $link-color;
+        color: $brand-color-light;
         a {
-          color: $link-color;
+          color: $brand-color-dark;
         }
       }
     }
+	p {
+	    @include adjust-font-size-to(18px);
+		@include rhythm(0, 0, 2, 0, 18px);
+	}
   }
 .comments-area {
-  border-top: 1px dashed white;
+  border-top: 1px dashed $function-color;
   padding-top: 2em;
   ol.commentlist {
     list-style: none;
-    margin: 0 0 1em;
+    margin: 0 0 .6em;
     padding: 0;
     text-indent: 0;
     li {
       &.alt!, &.bypostauthor!, &.byuser!, &.comment-author-admin! {}
       &.comment {
-        border-bottom: 1px dotted #666;
+        border-bottom: 1px dotted $function-color-darker;
         padding: 1em;
         .vcard {
 		  @extend .sans-font;
-          font-size: 16px;
-		  font-weight: bold;
+			@include rhythm(0, 0, 0, 1, 14px);
+          @include adjust-font-size-to(14px);
+		  font-weight: 400;
           cite.fn {
-            font-style: normal;
+            font-style: 600;
             a.url! {}
           }
           img {
             &.avatar {
-              border: 5px solid #ccc;
+              border: 5px solid $function-color-dark;
               float: right;
-              margin: 0 0 1em 1em;
+              margin: 0 0 .6em 1em;
             }
             &.avatar-32!, &.photo! {}
           }
           span.says! {}
         }
         .comment-meta a {
-          color: #ccc;
+          color: $function-color-dark;
         }
         p {
-          font-size: 1em;
-          margin: 0 0 1em;
+          @include adjust-font-size-to(10px);
+  		@include rhythm(0, 0, 0, 1, 10px);
         }
         ul {
-          font-size: 1em;
+          @include adjust-font-size-to(10px);
           list-style: square;
-          margin: 0 0 1em 2em;
+  		@include rhythm(0, 0, 0, 1, 10px);
         }
         div.reply {
-          font-size: 11px;
+          @include adjust-font-size-to(11px);
 		  text-align: right;
           a {
             font-weight: bold;
@@ -81,15 +99,15 @@
           li {
             &.alt!, &.bypostauthor!, &.byuser!, &.comment!, &.comment-author-admin! {}
             &.depth-2 {
-              border-left: 5px solid #555;
+              border-left: 5px solid $function-color;
               margin: 0 0 .25em .25em;
             }
             &.depth-3 {
-              border-left: 5px solid #999;
+              border-left: 5px solid $function-color-dark;
               margin: 0 0 .25em .25em;
             }
             &.depth-4 {
-              border-left: 5px solid #bbb;
+              border-left: 5px solid $function-color-darker;
               margin: 0 0 .25em .25em;
             }
             &.depth-5!, &.odd! {}
@@ -97,69 +115,122 @@
         }
       }
       &.even {
-        background: #fff;
+        background: $white;
       }
       &.odd {
-        background: #f6f6f6;
+        background: $function-color;
       }
       &.parent {
-        border-left: 5px solid #111;
+        border-left: 5px solid $function-color-dark;
       }
       &.thread-alt!, &.thread-even!, &.thread-odd! {}
     }
   }
 }
-  .entry-meta {
-    padding: 0.2em 0.8em;
-    margin: 0.8em -0.4em 1em;
+form#commentform {
+  label {
+    width: 200px;
+	display: inline-block;
+	.required {
+		color: $alert-color;
+	}
+  }
+  textarea, input[type=text], , input[type=email], input[type=password] {
+    padding: 4px 6px;
+    width: 350px;
+	border: 1px solid $function-color-dark;
+	float: right;
+	&:focus {
+		border-color: $alert-color;
+		background: $function-color;
+	}
+  }
+  textarea {
+	  height: 46px;
+	  clear: both;
+  }
+  input[type=submit] {
+	@include button($brand-color, $action-color-lighter);
+  }
+}
+
+p.subscribe-to-comments, .comment-rss {
+  height: 32px;
+  text-indent: 42px;
+  padding: 5px 0 0;
+}
+
+p.subscribe-to-comments {
+  input {
+    margin: 5px 3px 3px !important;
+    border: 0;
+    outline: 0;
+  }
+  label {
+    top: -2px;
+    color: #666;
+  }
+}
+   .entry-meta {
+    @include adjust-font-size-to(14px);
+	@include rhythm(0, 1, 0, 1, 14px);
     .edit-link {
       float: right;
-      color: desaturate(darken($body-bg, 30), 15);
+      color: desaturate(darken($brand-color, 30), 15);
       text-decoration: none;
       &:hover {
         background: none;
-        color: desaturate(darken($body-bg, 50), 15);
+        color: desaturate(darken($brand-color, 50), 15);
       }
     }
 	.author-info {
-	    padding: 0.8em;
-	    margin-top: 0.8em;
-	    background: $body-bg;
+		@include rhythm(1, 1, 1, 1, 14px);
+		padding: 20px;
+	    @include adjust-font-size-to(14px);
+	    background: $brand-color;
 	    @include border-radius(3px);
-	    @include box-shadow(darken($body-bg, 5), 1px, 1px, 1px);
+	    @include box-shadow(darken($brand-color, 5), 1px, 1px, 1px);
 		.author-avatar {
 			float: left;
-			padding: 5px;
-			background: #fff;
-			border: 1px solid #f8f8f8;
+			@include rhythm(0, 1, 0, 1, 14px);
+			background: $white;
+			border: 1px solid $function-color;
 		}
 		.author-description {
 			float: right;
 			width: 460px;
+			p {
+				@include rhythm(0, 1, 0, 1, 14px);
+			}
 		}
 	}
   }
   .more-link {
     @extend .heading-font;
+    @include adjust-font-size-to(13px);
     &:hover {
       text-decoration: underline;
     }
     &:after {
       content: "\FFEB";
-      font-size: 1.3em;
       padding-left: 5px;
     }
   }
   .navigation {
-    @extend .clear;
+    @extend .clearfix;
     padding-top: 1em;
     @extend .heading-font;
+	.section-heading {
+	    @include adjust-font-size-to(15px);
+		@include rhythm(0, 0, 0, 0, 15px);
+	}
     .nav-next, .nav-previous {
       a {
-        color: #888888;
+	    @include adjust-font-size-to(15px);
+        color: $function-color-darker;
         text-decoration: none;
         &:hover {
-          color: $link-color;
+          color: $brand-color-dark;
         }
       }
     }
@@ -168,7 +239,6 @@
       float: right;
       a:after {
         content: "\FFEB";
-        font-size: 1.5em;
         padding-left: 5px;
       }
     }
@@ -177,7 +247,6 @@
       float: left;
       a:before {
         content: "\FFE9";
-        font-size: 1.5em;
         padding-right: 5px;
       }
     }
@@ -188,5 +257,8 @@
 		  list-style-type: none;
 		  float: left;
 	  }
+  }
+  .page-links {
+      @extend .navigation;
   }
 }

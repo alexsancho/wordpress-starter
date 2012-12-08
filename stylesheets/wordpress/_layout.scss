@@ -1,19 +1,8 @@
-$page-width: 940px;
-$page-pad: 30px;
-$page-border: 1px;
-$inner-width: $page-width - $page-pad * 2;
-$side-width: ( ( $page-width / 12 ) * 4 ) - $page-pad * 2;
-$main-width: ( ( $page-width / 12 ) * 8 ) - $page-pad;
-
-.page-width {
-  @extend .clear;
-  width: $inner-width;
-  margin: 0 auto;
-}
-
 #page {
-  @extend .page-width;
-  padding: $page-pad;
+    @extend .clearfix;
+    width: $inner-width;
+    margin: 0 auto;
+  	padding: $page-pad;
 }
 
 #page #sidebar {
@@ -28,14 +17,15 @@ $main-width: ( ( $page-width / 12 ) * 8 ) - $page-pad;
 }
 
 #header {
-  @extend .page-width;
+  @extend .clearfix;
   width: $page-width;
   margin: 0 auto;
   padding-top: 40px;
 }
 
 #footer {
-  padding-top: 20px;
-  text-align: center;
-  padding: $page-pad 0;
+    width: $page-width;
+    margin-right: auto;
+    margin-left: auto;
+	text-align: right;
 }

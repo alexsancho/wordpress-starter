@@ -1,40 +1,34 @@
-$body-bg: #e9f2f7;
-$header-bg: whitesmoke;
-$page-bg: white;
-$link-color: desaturate(#0c78d1, 40);
-$heading-color: #333333;
-
 html, body {
-  background-color: $body-bg;
-  color: #444444;
+  background-color: $brand-color;
+  color: $function-color-darker;
 }
 
-h1 {
+#header h1 {
   a {
     @extend .h1-font;
-    line-height: 0.8em;
     text-decoration: none;
-    color: $heading-color;
-    letter-spacing: -1px;
-    padding-top: 0.11em;
+    color: $brand-color-dark;
+    @include adjust-font-size-to(48px);
+	@include rhythm(3, 1, 0, 2, 48px);
     @include text-shadow(white, 1px, 1px, 1px);
   }
   text-align: center;
   & + p {
-    color: #666666;
-    font-size: 1.3em;
+    color: $brand-color-light;
+    @include adjust-font-size-to(22px);
     text-align: center;
   }
 }
 
 #page {
-  background: white;
-  border: 1px solid darken($body-bg, 4);
+  background: $white;
+  //@include debug-vertical-alignment();
+  border: $page-border solid rgba($brand-color-dark, .7);
   @include background-clip(padding-box);
   @extend .round-corners;
-  @include box-shadow(darken($body-bg, 3), 0, 2px, 15px);
+  @include box-shadow(darken($brand-color-darker, 30%), 0, 2px, 15px);
   a {
-    color: $link-color;
+    color: $alert-color-darker;
     text-decoration: none;
     &:hover {
       text-decoration: underline;
@@ -43,13 +37,14 @@ h1 {
 }
 
 #footer {
-  font-size: 0.9em;
-  color: desaturate(darken($body-bg, 20), 28);
+  @include adjust-font-size-to(12px);
+  @include rhythm(3, 1, 0, 2, 12px);
+  color: desaturate(darken($brand-color, 20), 28);
   a {
-    color: desaturate(darken($body-bg, 28), 28);
+    color: desaturate(darken($brand-color, 28), 28);
     text-decoration: underline;
     &:hover {
-      color: desaturate(darken($body-bg, 40), 28);
+      color: desaturate(darken($brand-color, 40), 28);
     }
   }
 }

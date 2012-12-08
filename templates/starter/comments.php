@@ -38,7 +38,7 @@ if ( post_password_required() )
 
 		<ol class="commentlist">
 			<?php wp_list_comments( array( 'callback' => 'starter_comment', 'style' => 'ol' ) ); ?>
-		</ol><!-- .commentlist -->
+		</ol>
 
 	<?php
 	if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ):

@@ -49,7 +49,7 @@
   }
 }
 
-.visually-hidden, .vh, .assistive-text {
+.visually-hidden, .vh {
   @extend .visuallyhidden;
 }
 
@@ -59,24 +59,8 @@
   visibility: hidden;
 }
 
-// The Magnificent Clearfix: Updated to prevent margin-collapsing on child elements.
-// j.mp/bestclearfix
-
 .clearfix {
-  &:before {
-    content: "\0020";
-    display: block;
-    height: 0;
-    overflow: hidden;
-  }
-  &:after {
-    content: "\0020";
-    display: block;
-    height: 0;
-    overflow: hidden;
-    clear: both;
-  }
-  zoom: 1;
+  @include pie-clearfix;
 }
 
 .clear-text-shadow {

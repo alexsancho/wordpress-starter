@@ -1,0 +1,43 @@
+// $ratio : any valid ratio like 16/9, 4/3...
+@mixin responsive-embed($ratio: $responsive-embeds-default-ratio) {
+  position: relative;
+  display: inline-block;
+  height: 100%/$ratio;
+  overflow: hidden;
+  iframe,
+  object,
+  embed {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+	  height: 100%;
+  }
+}
+
+@mixin gradient($from, $to) {
+  background: -webkit-gradient(linear, left top, left bottom, from($from), to($to));
+  background: -moz-linear-gradient(top, $from, $to);
+  @include background-clip(padding-box);
+}
+
+@mixin button($color: #fff, $bg-color: #50A7E7, $font-size: 12px, $radius: 15px) {
+	@include gradient($bg-color, darken($bg-color, 25%));
+	border: 1px solid darken($bg-color, 15%);
+	color: $color;
+	cursor: pointer;
+    @include adjust-font-size-to($font-size);
+	padding: 4px 15px;
+	text-decoration: none;
+	text-shadow: 0 1px 0 darken($color, 50%);
+	@include box-shadow(0 1px 1px darken($bg-color, 10%) inset, 0 1px 1px darken($bg-color, 5%));
+	@include border-radius($radius);
+	&:hover {
+		@include gradient(darken($bg-color, 25%), $bg-color);
+		@include box-shadow(0 1px 1px darken($bg-color, 20%) inset, 0 1px 1px darken($bg-color, 10%));
+	}
+	&:active {
+     @include box-shadow(0 0 10px darken($bg-color, 30%) inset);
+     text-shadow: 0 -1px 0 darken($color, 90%);
+  }
+}

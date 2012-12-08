@@ -1,0 +1,69 @@
+@import "compass";
+
+@include global-reset;
+@include reset-html5;
+
+// Default settings
+$responsive-embeds-default-ratio: 1 !default;
+
+$experimental-support-for-opera: false;
+$experimental-support-for-khtml: false;
+
+$legacy-support-for-ie6: false;
+
+// Layout
+$page-width: 940px;
+$page-pad: 30px;
+$page-border: 1px;
+$radius: 3px;
+$inner-width: $page-width - $page-pad * 2;
+$side-width: ( ( $page-width / 12 ) * 4 ) - $page-pad * 2;
+$main-width: ( ( $page-width / 12 ) * 8 ) - $page-pad;
+
+// Typography
+$sans-serif: "Helvetica Neue", Helvetica, sans-serif;
+$serif: Georgia, Times, "Times New Roman", serif;
+$monospace: "Menlo", "Bitstream Vera Sans", Monaco, "Andale Mono", "Lucida Console", monospace;
+
+// Vertical Ryhthm
+$base-font-size:    16px;        // Font-size of your body copy.
+$base-line-height:  6px;         // Setting the base-line-height half.
+
+$fs-h1: 40px;
+$fs-h2: 35px;
+$fs-h3: 32px;
+$fs-h4: 28px;
+$fs-h5: 24px;
+$fs-h6: 12px;
+
+// Colors
+$contrasted-dark-default: #191919;
+$contrasted-light-default: #f8f8f8;
+
+$white: #fff;
+$black: #252525;
+
+$brand-color: #e9f2f7;
+$action-color: #67a54b;
+$function-color: #f8f8f8;
+$alert-color: #a53a22;
+
+$brand-color-light: lighten( $brand-color, 10% );
+$brand-color-lighter: lighten( $brand-color, 20% );
+$brand-color-dark: darken( $brand-color, 15% );
+$brand-color-darker: darken( $brand-color, 25% );
+
+$action-color-light: lighten( $action-color, 10% );
+$action-color-lighter: lighten( $action-color, 20% );
+$action-color-dark: darken( $action-color, 15% );
+$action-color-darker: darken( $action-color, 25% );
+
+$function-color-light: lighten( $function-color, 10% );
+$function-color-lighter: lighten( $function-color, 20% );
+$function-color-dark: darken( $function-color, 15% );
+$function-color-darker: darken( $function-color, 25% );
+
+$alert-color-light: lighten( $alert-color, 10% );
+$alert-color-lighter: lighten( $alert-color, 20% );
+$alert-color-dark: darken( $alert-color, 15% );
+$alert-color-darker: darken( $alert-color, 25% );

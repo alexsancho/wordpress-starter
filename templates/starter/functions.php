@@ -613,7 +613,7 @@ function starter_entry_meta() {
  * @since [starter] 1.0
  */
 function starter_continue_reading_link() {
-	$read_more_link = ' … <a href="' . get_permalink() . '" class="more-link">' . __( 'Continue reading', 'starter' ) . '</a>';
+	$read_more_link = ' <a href="' . get_permalink() . '" class="more-link">' . __( 'Continue reading', 'starter' ) . '</a>';
 
 	return $read_more_link;
 }

@@ -1,56 +1,7 @@
-// Default settings
-$responsive-embeds-default-ratio : 1 !default;
-
-// $ratio : any valid ratio like 16/9, 4/3...
-@mixin responsive-embed($ratio: $responsive-embeds-default-ratio) {
-  position: relative;
-  padding-bottom: 100%/$ratio;
-  padding-top: 30px; /* IE6 workaround*/
-  height: 0;
-  overflow: hidden;
-  iframe,
-  object,
-  embed {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-  }
-}
-
 /**
  * Responsive WordPress Core Theme Styles
  * http://jeffsebring.com/responsive-wordpress-images/
 --------------------------------------------------- */
-
-.sticky, .bypostauthor, .gallery-caption {
-  display: normal;
-}
-
-.alignnone {
-  margin: 1em 1em 1em 0;
-}
-
-.aligncenter, div.aligncenter {
-  display: block;
-  margin: .5em auto;
-}
-
-.alignright {
-  float: right;
-  margin: 0 0 1em 1em;
-}
-
-.alignleft {
-  float: left;
-  margin: 0 1em 1em 0;
-}
-
-.aligncenter {
-  display: block;
-  margin: 1em auto;
-}
 
 img {
   max-width: 100%;
@@ -123,18 +74,6 @@ img {
     width: 100%;
     height: auto;
   }
-}
-
-.comments ol {
-  padding-left: 0;
-  li {
-    margin: 0;
-  }
-}
-
-.comment-author {
-  padding: 0;
-  text-decoration: none;
 }
 
 // 16/9 embed
