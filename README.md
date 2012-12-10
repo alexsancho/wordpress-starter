@@ -6,7 +6,7 @@ This Compass extension provides support for creating WordPress Themes using Sass
 Installing
 ==========
 
-    [sudo] gem install wordpress-starter.gem
+    [sudo] gem install wordpress-starter
 
 To install a theme into your existing compass project, add the following to your compass configuration file:
 
