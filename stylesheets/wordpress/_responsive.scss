@@ -1,3 +1,118 @@
+@media (max-width: 960px) {
+  .nav-menu {
+    position: fixed;
+    float: none;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    a.mobile_handle {
+      display: block;
+      padding: 10px;
+      font-size: $fs-h5;
+      background: rgba($brand-color-dark, .6);
+      text-align: center;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: $function-color-light;
+    }
+    ul {
+      display: none;
+      margin-bottom: 0;
+      li {
+        display: block;
+        position: relative;
+        float: none;
+        padding: 0;
+        background: $function-color;
+        border-top: 1px solid $function-color-darker;
+      }
+      a {
+        display: block;
+        position: relative;
+        float: none;
+        padding: 15px 10px;
+        clear: both;
+      }
+      ul {
+        display: none;
+        position: relative;
+        width: 100%;
+        top: 0;
+        left: 0;
+        margin: 0;
+        padding: 0;
+        background: none;
+        border-bottom: 2px solid $function-color-darker;
+        a {
+          color: $alert-color;
+          padding: 15px 10px 15px 25px;
+        }
+        ul {
+          top: 0;
+          left: 0;
+          a {
+            padding: 15px 10px 15px 45px;
+          }
+        }
+      }
+    }
+    .sub_nav {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 10%;
+      padding: 15px 20px;
+      margin: 0;
+      cursor: pointer;
+    }
+    .arrow_up {
+      float: right;
+      width: 0;
+      height: 0;
+      padding: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 10px solid $alert-color-darker;
+    }
+    .arrow_down {
+      float: right;
+      width: 0;
+      height: 0;
+      padding: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 10px solid $alert-color-darker;
+    }
+  }
+}
+
+@include at-breakpoint($break) {
+  .nav-menu {
+    a.mobile_handle {
+      display: none;
+    }
+    a {
+      color: $alert-color-darker;
+      &:hover {
+        color: $alert-color;
+        text-decoration: underline;
+      }
+    }
+    ul {
+      display: block;
+      ul {
+        margin-left: $grid-padding;
+        ul {
+          margin-left: $grid-padding;
+        }
+      }
+    }
+  }
+}
+
 /**
  * Responsive WordPress Core Theme Styles
  * http://jeffsebring.com/responsive-wordpress-images/
@@ -81,16 +196,6 @@ img {
   @include responsive-embed(16/9);
 }
 
-// 4/3 embed
-.entry-content-asset-4-3 {
-  @include responsive-embed(4/3);
-}
-
-// default 1 ratio for a square embed
-.entry-content-asset-1-1 {
-  @include responsive-embed;
-}
-
 @media only screen and (max-width: 800px) {
   embed, object {
     max-width: 100%;
@@ -98,6 +203,10 @@ img {
 }
 
 @media only screen and (max-width: 650px) {
+  // 4/3 embed
+  .entry-content-asset {
+    @include responsive-embed(4/3);
+  }
   .gallery-columns-3 .gallery-item {
     width: 33.33%;
     img {
@@ -108,6 +217,10 @@ img {
 }
 
 @media only screen and (max-width: 480px) {
+  // default 1 ratio for a square embed
+  .entry-content-asset {
+    @include responsive-embed;
+  }
   .gallery-columns-2 .gallery-item {
     width: 50%;
     img {

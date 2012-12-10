@@ -10,6 +10,8 @@
  * @copyright 2012 [Your Name]
  */
 
+global $of_options, $data;
+
 /**
  * Set the content width based on the theme's design and stylesheet.
  *
@@ -17,7 +19,7 @@
  * is designed for, generally via the style.css stylesheet.
  */
 if ( ! isset( $content_width ) )
-	$content_width = 940;
+	$content_width = 540;
 
 /**
  * Sets up theme defaults and registers support for various WordPress features.
@@ -59,6 +61,12 @@ function starter_setup() {
 
 	// Register wp_nav_menu() menus (http://codex.wordpress.org/Function_Reference/register_nav_menus)
 	register_nav_menu( 'primary', __( 'Primary menu', 'starter' ) );
+
+	/*------------------------------------------*/
+	/* Options Framework
+	/*------------------------------------------*/
+	locate_template( 'options.php', true );
+	locate_template( 'admin/index.php', true );
 
 	do_action( 'starter_setup' );
 }
@@ -203,10 +211,10 @@ function starter_filter_wp_title( $title, $separator ) {
 
 	if ( is_search() ) {
 		// If we're a search, let's start over:
-		$title = sprintf( __( 'Resultados de la busqueda para %s', 'bsth' ), '"' . get_search_query() . '"' );
+		$title = sprintf( __( 'Search results for %s', 'starter' ), '"' . get_search_query() . '"' );
 		// Add a page number if we're on page 2 or more:
 		if ( $paged >= 2 ) {
-			$title .= " $separator " . sprintf( __( 'Pagina %s', 'bsth' ), $paged );
+			$title .= " $separator " . sprintf( __( 'Page %s', 'starter' ), $paged );
 		}
 		// Add the site name to the end:
 		$title .= " $separator " . get_bloginfo( 'name', 'display' );
@@ -232,7 +240,7 @@ function starter_filter_wp_title( $title, $separator ) {
 
 	// Add a page number if necessary:
 	if ( $paged >= 2 or $page >= 2 ) {
-		$return[] = sprintf( __( 'Pagina %s', 'bsth' ), max( $paged, $page ) );
+		$return[] = sprintf( __( 'Page %s', 'starter' ), max( $paged, $page ) );
 	}
 
 	// Add the site name to the end:
@@ -418,6 +426,58 @@ function starter_enhanced_image_navigation( $url, $id ) {
 }
 
 add_filter( 'attachment_link', 'starter_enhanced_image_navigation', 10, 2 );
+
+/**
+ * Replace various active menu class names with "active"
+ * Remove the id="" on nav menu items
+ * Return 'menu-slug' for nav menu classes
+ *
+ * @since [starter] 1.0
+ */
+function starter_wp_nav_menu_class( $classes, $item ) {
+	$slug    = sanitize_title( $item->title );
+	$classes = preg_replace( '/(current(-menu-|[-_]page[-_])(item|parent|ancestor))/', 'active', $classes );
+	$classes = preg_replace( '/^((menu|page)[-_\w+]+)+/', '', $classes );
+
+	$classes[] = 'menu-' . $slug;
+
+	return array_filter( array_unique( $classes ), 'is_element_empty' );
+}
+
+add_filter( 'nav_menu_css_class', 'starter_wp_nav_menu_class', 10, 2 );
+add_filter( 'nav_menu_item_id', '__return_null' );
+
+/**
+ * Check if $element is empty
+ *
+ * @since [starter] 1.0
+ */
+function is_element_empty( $element ) {
+	$element = trim( $element );
+
+	return ( bool ) ! empty( $element );
+}
+
+/**
+ * Create a graceful fallback to wp_page_menu
+ *
+ * @since [starter] 1.0
+ */
+function starter_page_menu() {
+
+	$args = array(
+		'sort_column' => 'menu_order, post_title',
+		'menu_class'  => 'nav-menu',
+		'include'     => '',
+		'exclude'     => '',
+		'echo'        => true,
+		'show_home'   => false,
+		'link_before' => '',
+		'link_after'  => '',
+	);
+
+	wp_page_menu( $args );
+}
 
 /**
  * Adds extra info to language attributes string
@@ -680,6 +740,42 @@ function starter_nofollow_links_in_post( $text ) {
 add_action( 'the_content', 'starter_nofollow_links_in_post' );
 
 /**
+ * Custom tag clould args
+ *
+ * @since [starter] 1.0
+ */
+function starter_widget_tag_cloud_args( $args ) {
+	$args['number']   = 20; // show less tags
+	$args['largest']  = 13; // make largest and smallest the same
+	$args['smallest'] = 13;
+	$args['unit']     = 'px';
+	$args['format']   = 'list'; // ul with a class of wp-tag-cloud
+	// $args['exclude']  = array(20, 80, 92); // exclude tags by ID
+	// $args['taxonomy'] = array('post_tag', 'ingredients'); // add post tags and ingredients taxonomy
+
+	return $args;
+}
+
+add_filter( 'widget_tag_cloud_args', 'starter_widget_tag_cloud_args' );
+
+/**
+ * Filter tag clould output so that it can be styled by CSS
+ *
+ * @since [starter] 1.0
+ */
+function starter_add_tag_class( $taglinks ) {
+	$tags  = explode( '</a>', $taglinks );
+	$regex = "#(.*tag-link[-])(.*)(' title.*)#e";
+	foreach ( $tags as $tag ) {
+		$tagn[] = preg_replace( $regex, "('$1$2 label tag-'.get_tag($2)->slug.'$3')", $tag );
+	}
+
+	return implode( '</a>', $tagn );
+}
+
+add_filter( 'wp_tag_cloud', 'starter_add_tag_class' );
+
+/**
  * Outputs WP Pagenavi pagination or wordpress navigation
  *
  * @since [starter] 1.0
@@ -794,11 +890,11 @@ function starter_comment( $comment, $args, $depth ) {
 			<?php endif; ?>
 
 			<section class="comment-content comment clearfix">
-			<?php comment_text(); ?>
-			<?php edit_comment_link( __( 'Edit', 'starter' ), '<span class="edit-link">', '</span>' ); ?>
+				<?php comment_text(); ?>
 			</section>
 
 			<div class="reply">
+				<?php edit_comment_link( __( 'Edit', 'starter' ), '<span class="edit-link">', '</span> / ' ); ?>
 				<?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply', 'starter' ), 'after' => ' <span>&darr;</span>', 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
 			</div>
 			</article>

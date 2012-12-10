@@ -1,69 +1,74 @@
 @import "compass";
+@import "susy";
 
 @include global-reset;
 @include reset-html5;
 
-// Default settings
-$responsive-embeds-default-ratio: 1 !default;
+// border-box-sizing()
+@include border-box-sizing;
 
-$experimental-support-for-opera: false;
-$experimental-support-for-khtml: false;
+// Settings --------------------------------------------------------------
+$responsive-embeds-default-ratio : 1 !default;
 
-$legacy-support-for-ie6: false;
+$tagsHeight                      : 26px;
+$tagsDefaultColor                : #eb6b22;
 
-// Layout
-$page-width: 940px;
-$page-pad: 30px;
-$page-border: 1px;
-$radius: 3px;
-$inner-width: $page-width - $page-pad * 2;
-$side-width: ( ( $page-width / 12 ) * 4 ) - $page-pad * 2;
-$main-width: ( ( $page-width / 12 ) * 8 ) - $page-pad;
+// Susy & Compass use HTML hacks to support IE 6 and 7. You can turn that off:
+$legacy-support-for-ie6          : false;
+// $legacy-support-for-ie7       : true;
 
-// Typography
-$sans-serif: "Helvetica Neue", Helvetica, sans-serif;
-$serif: Georgia, Times, "Times New Roman", serif;
-$monospace: "Menlo", "Bitstream Vera Sans", Monaco, "Andale Mono", "Lucida Console", monospace;
+$experimental-support-for-opera  : false;
+$experimental-support-for-khtml  : false;
 
-// Vertical Ryhthm
-$base-font-size:    16px;        // Font-size of your body copy.
-$base-line-height:  6px;         // Setting the base-line-height half.
+// Grid -------------------------------------------------------------------
+$total-columns                   : 7;              // a 7-column grid
+$column-width                    : 60px;           // each column is 4em wide
+$gutter-width                    : 20px;           // 1em gutters between columns
+$grid-padding                    : 10px;           // grid-padding equal to gutters
+$break                           : 12;             // a 12-column grid
 
-$fs-h1: 40px;
-$fs-h2: 35px;
-$fs-h3: 32px;
-$fs-h4: 28px;
-$fs-h5: 24px;
-$fs-h6: 12px;
+// Typography -------------------------------------------------------------
+$sans-serif                      : "Helvetica Neue", Helvetica, sans-serif;
+$serif                           : Georgia, Times, "Times New Roman", serif;
+$monospace                       : "Menlo", "Bitstream Vera Sans", Monaco, "Andale Mono", "Lucida Console", monospace;
 
-// Colors
-$contrasted-dark-default: #191919;
-$contrasted-light-default: #f8f8f8;
+// Vertical Ryhthm --------------------------------------------------------
+$base-font-size                  : 16px;           // Font-size of your body copy.
+$base-line-height                : 12px;           // Setting the base-line-height half.
+$relative-font-sizing            : true;           // Set to false if you want to use absolute pixels in sizing your typography.
 
-$white: #fff;
-$black: #252525;
+$fs-h1                           : 40px;
+$fs-h2                           : 35px;
+$fs-h3                           : 32px;
+$fs-h4                           : 28px;
+$fs-h5                           : 24px;
+$fs-h6                           : 12px;
 
-$brand-color: #e9f2f7;
-$action-color: #67a54b;
-$function-color: #f8f8f8;
-$alert-color: #a53a22;
+// Colors ------------------------------------------------------------------
+$white                           : #fff;
+$black                           : #252525;
 
-$brand-color-light: lighten( $brand-color, 10% );
-$brand-color-lighter: lighten( $brand-color, 20% );
-$brand-color-dark: darken( $brand-color, 15% );
-$brand-color-darker: darken( $brand-color, 25% );
+$brand-color                     : #3b5998;
+$action-color                    : #67a54b;
+$function-color                  : #f2f2f2;
+$alert-color                     : #b22727;
 
-$action-color-light: lighten( $action-color, 10% );
-$action-color-lighter: lighten( $action-color, 20% );
-$action-color-dark: darken( $action-color, 15% );
-$action-color-darker: darken( $action-color, 25% );
+$brand-color-light               : lighten( $brand-color, 10% );
+$brand-color-lighter             : lighten( $brand-color, 20% );
+$brand-color-dark                : darken( $brand-color, 15% );
+$brand-color-darker              : darken( $brand-color, 25% );
 
-$function-color-light: lighten( $function-color, 10% );
-$function-color-lighter: lighten( $function-color, 20% );
-$function-color-dark: darken( $function-color, 15% );
-$function-color-darker: darken( $function-color, 25% );
+$action-color-light              : lighten( $action-color, 10% );
+$action-color-lighter            : lighten( $action-color, 20% );
+$action-color-dark               : darken( $action-color, 15% );
+$action-color-darker             : darken( $action-color, 25% );
 
-$alert-color-light: lighten( $alert-color, 10% );
-$alert-color-lighter: lighten( $alert-color, 20% );
-$alert-color-dark: darken( $alert-color, 15% );
-$alert-color-darker: darken( $alert-color, 25% );
+$function-color-light            : lighten( $function-color, 10% );
+$function-color-lighter          : lighten( $function-color, 20% );
+$function-color-dark             : darken( $function-color, 15% );
+$function-color-darker           : darken( $function-color, 25% );
+
+$alert-color-light               : lighten( $alert-color, 10% );
+$alert-color-lighter             : lighten( $alert-color, 20% );
+$alert-color-dark                : darken( $alert-color, 15% );
+$alert-color-darker              : darken( $alert-color, 25% );

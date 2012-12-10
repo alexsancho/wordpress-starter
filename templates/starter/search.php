@@ -8,15 +8,13 @@
  * @copyright 2012 [Your Name]
  */
 
-	get_header();
-?>
+get_header();
 
-	<section id="primary" class="site-content">
-		<div id="content" role="main">
-		<?php if ( have_posts() ) : ?>
-			<header class="page-header">
-				<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'starter' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
-			</header>
+if ( have_posts() ):
+	?>
+	<header class="page-header">
+		<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'starter' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
+	</header>
 	<?php
 	/* Start the Loop */
 	while ( have_posts() ):
@@ -29,8 +27,5 @@
 else:
 	get_template_part( 'content', 'none' );
 endif;
-?>
-		</div>
-	</section>
-<?php
-	get_footer();
+
+get_footer();

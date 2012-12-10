@@ -12,20 +12,19 @@
  * @copyright 2012 [Your Name]
  */
 
-	get_header();
-?>
-	<section id="primary" class="site-content">
-		<div id="content" role="main">
-		<?php if ( have_posts() ) : ?>
-			<header class="archive-header">
-				<h1 class="archive-title"><?php printf( __( 'Tag Archives: %s', 'starter' ), '<span>' . single_tag_title( '', false ) . '</span>' ); ?></h1>
+get_header();
 
+if ( have_posts() ):
+	?>
+	<header class="archive-header">
+		<h1 class="archive-title"><?php printf( __( 'Tag Archives: %s', 'starter' ), '<span>' . single_tag_title( '', false ) . '</span>' ); ?></h1>
 	<?php
 	if ( tag_description() ):
-				// Show an optional tag description ?>
-				<div class="archive-meta"><?php echo tag_description(); ?></div>
-			<?php endif; ?>
-			</header>
+		// Show an optional tag description
+		?>
+		<div class="archive-meta"><?php echo tag_description(); ?></div>
+	<?php endif; ?>
+	</header>
 	<?php
 	/* Start the Loop */
 	while ( have_posts() ):
@@ -38,8 +37,5 @@
 else:
 	get_template_part( 'content', 'none' );
 endif;
-?>
-		</div>
-	</section>
-<?php
-	get_footer();
+
+get_footer();

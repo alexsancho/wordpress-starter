@@ -1,31 +1,56 @@
-#page {
-    @extend .clearfix;
-    width: $inner-width;
-    margin: 0 auto;
-  	padding: $page-pad;
+div.page {
+  // page acts as a container for our grid.
+  @include container($total-columns, $break);
+  .header {
+    padding-top: 50px;
+  }
+  .main, .secondary {
+    padding: 0 gutter();
+  }
 }
 
-#page #sidebar {
-    width: $side-width;
-	float: left;
-	padding-right: $page-pad;
+@include at-breakpoint($break) {
+  div.page {
+    .header { @include prefix(2,$break); }
+
+    // nav spans 2 columns of total 12.
+    .nav-menu { @include span-columns(2,$break); }
+
+    .content {
+      $main-columns: 10;
+      // content spans the final (omega) 10 columns of 12.
+      @include span-columns($main-columns omega, $break);
+
+      // main content spans 7 of those 10 columns.
+      .main {
+        @include span-columns(7,$main-columns);
+        article, .archive-title, .navigation, .comments-area {
+          width: columns(7,7) - gutter();
+          margin-left: gutter();
+        }
+      }
+      .main, .secondary {
+        padding: 0;
+      }
+
+      // secondary content spans the final 3 (omega) of 10 columns.
+      .secondary {
+        @include span-columns(3 omega, $main-columns);
+        .widgets {
+          width: columns(3,3) - gutter();
+          margin-right: gutter();
+        }
+      }
+    }
+  }
 }
 
-#page #main {
-    width: $main-width;
-	float: left;
-}
-
-#header {
-  @extend .clearfix;
-  width: $page-width;
-  margin: 0 auto;
-  padding-top: 40px;
-}
-
-#footer {
-    width: $page-width;
-    margin-right: auto;
-    margin-left: auto;
-	text-align: right;
+.footer {
+  clear: both;
+  margin: $grid-padding 0 - $grid-padding;
+  padding: $grid-padding;
+  @include at-breakpoint($break) {
+    margin: 0;
+    @include pad(2,3,$break);
+  }
 }

@@ -18,14 +18,13 @@
  * @copyright 2012 [Your Name]
  */
 
-	get_header();
-?>
-	<div id="primary" class="site-content">
-		<div id="content" role="main">
-		<?php if ( have_posts() ) : ?>
-			<header class="archive-header">
-				<h1 class="archive-title">
-				<?php
+get_header();
+
+if ( have_posts() ):
+	?>
+	<header class="archive-header">
+		<h1 class="archive-title">
+	<?php
 	if ( is_day() ) :
 		printf( __( 'Daily Archives: %s', 'starter' ), '<span>' . get_the_date() . '</span>' );
 	elseif ( is_month() ) :
@@ -35,9 +34,10 @@
 	else :
 		_e( 'Archives', 'starter' );
 	endif;
-				?></h1>
-			</header>
-			<?php
+	?>
+		</h1>
+	</header>
+	<?php
 	/* Start the Loop */
 	while ( have_posts() ):
 		the_post();
@@ -53,8 +53,5 @@
 else:
 	get_template_part( 'content', 'none' );
 endif;
-?>
-		</div>
-	</div>
-<?php
-	get_footer();
+
+get_footer();

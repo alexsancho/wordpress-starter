@@ -8,11 +8,8 @@
  * @copyright 2012 [Your Name]
  */
 
-	get_header( get_post_format() );
-?>
-	<div id="primary" class="site-content">
-		<div id="content" role="main">
-<?php
+get_header( get_post_format() );
+
 if ( have_posts() ):
 	while ( have_posts() ):
 		the_post();
@@ -20,18 +17,15 @@ if ( have_posts() ):
 		/* If you want to overload this in a child theme then include a file
 		 * called content-single.php and that will be used instead.
 		 */
-		get_template_part( 'content', 'single' );
+		 get_template_part( 'content', 'single' );
 
-		/* Display navigation to next/previous pages when applicable */
-		do_action( 'pagination' );
+		 /* Display navigation to next/previous pages when applicable */
+		 do_action( 'pagination' );
 
-		comments_template( '', true );
-	endwhile;
+		 comments_template( '', true );
+	 endwhile;
 else:
-	get_template_part( 'content', 'none' );
+	 get_template_part( 'content', 'none' );
 endif;
-?>
-		</div>
-	</div>
-<?php
-	get_footer( get_post_format() );
+
+get_footer( get_post_format() );

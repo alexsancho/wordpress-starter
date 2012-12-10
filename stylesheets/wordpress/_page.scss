@@ -1,264 +1,364 @@
-#page {
-  .post {
-	  @extend .clearfix;
-	@include trailing-border(1px, 4, 18px, solid);
-	padding-top: 30px;
-    border-color: $brand-color;
-    &:first-child {
-      padding-top: 0;
-    }
-    &.single .entry-content {
-      border-bottom: 1px dashed $brand-color;
-    }
-	header .wp-post-image {
-		max-width: 180px;
-		height: auto;
-		float: left;
-		@include rhythm(0, 0, 0, 0, 16px);
-		@include rhythm-borders(1px, 1, 16px, solid);
-		margin-right: 15px;
-		border-color: $function-color;
-		background: $white;
-	}
-    #{headings(1, 6)} {
-      color: $function-color-darker;
-    }
-    h1 {
-		@include rhythm(1, 0, 1, 0, 32px);
-	    @include adjust-font-size-to(32px);
-      a {
-        color: $brand-color-dark;
-      }
-      &:hover {
-        color: $brand-color-light;
-        a {
-          color: $brand-color-dark;
-        }
+div.page {
+  .search {
+    position: relative;
+    margin: 0 auto;
+    width: columns(3,3) - gutter();
+    input[type=search] {
+      height: 26px;
+      width: 100%;
+      padding: 0 12px 0 25px;
+      background: white url(../images/search.png) 8px 6px no-repeat;
+      color: #555;
+      border: 1px solid;
+      border-color: #a8acbc #babdcc #c0c3d2;
+      border-radius: 13px;
+      -webkit-appearance: textfield;
+      @include box-shadow(inset 0 1px #e5e7ed, 0 1px #fcfcfc);
+      &:focus {
+        outline: 0;
+        border-color: #66b1ee;
+        @include box-shadow(0 0 2px rgba(85, 168, 236, .9));
       }
     }
-	p {
-	    @include adjust-font-size-to(18px);
-		@include rhythm(0, 0, 2, 0, 18px);
-	}
   }
-.comments-area {
-  border-top: 1px dashed $function-color;
-  padding-top: 2em;
-  ol.commentlist {
-    list-style: none;
-    margin: 0 0 .6em;
-    padding: 0;
-    text-indent: 0;
-    li {
-      &.alt!, &.bypostauthor!, &.byuser!, &.comment-author-admin! {}
-      &.comment {
-        border-bottom: 1px dotted $function-color-darker;
-        padding: 1em;
-        .vcard {
-		  @extend .sans-font;
-			@include rhythm(0, 0, 0, 1, 14px);
-          @include adjust-font-size-to(14px);
-		  font-weight: 400;
-          cite.fn {
-            font-style: 600;
-            a.url! {}
-          }
-          img {
-            &.avatar {
-              border: 5px solid $function-color-dark;
-              float: right;
-              margin: 0 0 .6em 1em;
-            }
-            &.avatar-32!, &.photo! {}
-          }
-          span.says! {}
+  .main {
+    article.hentry {
+      @extend .clearfix;
+      @include padding-leader(2);
+      @include padding-trailer(1);
+      @include trailing-border(1px, lines-for-font-size(17px));
+      border-color: rgba(shade($function-color-light, 15%), .4);
+      &.single .entry-content {
+        border-bottom: none;
+      }
+      &.format-aside .entry-meta, &.format-quote .entry-meta {
+        margin-top: 0;
+      }
+      .featured-post {
+        @include adjust-font-size-to(24px);
+        @include trailing-border(2px, 1);
+        @include rhythm(1, 0, 1, 0);
+        border-color: rgba(shade($function-color-light, 15%), .4);
+      }
+      &.sticky {}
+      header {
+        .wp-post-image {
+          max-width: columns(7,7) - gutter();
+          height: auto;
+          float: left;
+          @include rhythm-borders(1px, 1/2);
+          @include trailer;
+          margin-right: gutter();
+          border-color: $function-color;
+          background: $white;
         }
-        .comment-meta a {
-          color: $function-color-dark;
-        }
-        p {
-          @include adjust-font-size-to(10px);
-  		@include rhythm(0, 0, 0, 1, 10px);
-        }
-        ul {
-          @include adjust-font-size-to(10px);
-          list-style: square;
-  		@include rhythm(0, 0, 0, 1, 10px);
-        }
-        div.reply {
-          @include adjust-font-size-to(11px);
-		  text-align: right;
+        .entry-title {
           a {
-            font-weight: bold;
-          }
-        }
-        ul.children {
-          list-style: none;
-          margin: 1em 0 0;
-          text-indent: 0;
-          li {
-            &.alt!, &.bypostauthor!, &.byuser!, &.comment!, &.comment-author-admin! {}
-            &.depth-2 {
-              border-left: 5px solid $function-color;
-              margin: 0 0 .25em .25em;
+            color: $brand-color-dark;
+            &:hover {
+              color: $brand-color-light;
             }
-            &.depth-3 {
-              border-left: 5px solid $function-color-dark;
-              margin: 0 0 .25em .25em;
-            }
-            &.depth-4 {
-              border-left: 5px solid $function-color-darker;
-              margin: 0 0 .25em .25em;
-            }
-            &.depth-5!, &.odd! {}
           }
         }
       }
-      &.even {
-        background: $white;
-      }
-      &.odd {
-        background: $function-color;
-      }
-      &.parent {
-        border-left: 5px solid $function-color-dark;
-      }
-      &.thread-alt!, &.thread-even!, &.thread-odd! {}
-    }
-  }
-}
-form#commentform {
-  label {
-    width: 200px;
-	display: inline-block;
-	.required {
-		color: $alert-color;
-	}
-  }
-  textarea, input[type=text], , input[type=email], input[type=password] {
-    padding: 4px 6px;
-    width: 350px;
-	border: 1px solid $function-color-dark;
-	float: right;
-	&:focus {
-		border-color: $alert-color;
-		background: $function-color;
-	}
-  }
-  textarea {
-	  height: 46px;
-	  clear: both;
-  }
-  input[type=submit] {
-	@include button($brand-color, $action-color-lighter);
-  }
-}
-
-p.subscribe-to-comments, .comment-rss {
-  height: 32px;
-  text-indent: 42px;
-  padding: 5px 0 0;
-}
-
-p.subscribe-to-comments {
-  input {
-    margin: 5px 3px 3px !important;
-    border: 0;
-    outline: 0;
-  }
-  label {
-    top: -2px;
-    color: #666;
-  }
-}
-   .entry-meta {
-    @include adjust-font-size-to(14px);
-	@include rhythm(0, 1, 0, 1, 14px);
-    .edit-link {
-      float: right;
-      color: desaturate(darken($brand-color, 30), 15);
-      text-decoration: none;
-      &:hover {
-        background: none;
-        color: desaturate(darken($brand-color, 50), 15);
-      }
-    }
-	.author-info {
-		@include rhythm(1, 1, 1, 1, 14px);
-		padding: 20px;
-	    @include adjust-font-size-to(14px);
-	    background: $brand-color;
-	    @include border-radius(3px);
-	    @include box-shadow(darken($brand-color, 5), 1px, 1px, 1px);
-		.author-avatar {
-			float: left;
-			@include rhythm(0, 1, 0, 1, 14px);
-			background: $white;
-			border: 1px solid $function-color;
-		}
-		.author-description {
-			float: right;
-			width: 460px;
-			p {
-				@include rhythm(0, 1, 0, 1, 14px);
-			}
-		}
-	}
-  }
-  .more-link {
-    @extend .heading-font;
-    @include adjust-font-size-to(13px);
-    &:hover {
-      text-decoration: underline;
-    }
-    &:after {
-      content: "\FFEB";
-      padding-left: 5px;
-    }
-  }
-  .navigation {
-    @extend .clearfix;
-    padding-top: 1em;
-    @extend .heading-font;
-	.section-heading {
-	    @include adjust-font-size-to(15px);
-		@include rhythm(0, 0, 0, 0, 15px);
-	}
-    .nav-next, .nav-previous {
-      a {
-	    @include adjust-font-size-to(15px);
+      #{headings(1, 6)} {
         color: $function-color-darker;
-        text-decoration: none;
-        &:hover {
-          color: $brand-color-dark;
+      }
+      &.format-status {
+        .entry-header {
+          @extend .clearfix;
+          img {
+            float: left;
+            @include rhythm-borders(1px, 1/4);
+            @include trailer;
+            margin-right: gutter();
+            border-color: $function-color;
+            background: $white;
+          }
+          header {
+            float: left;
+            h1 {
+              @include adjust-font-size-to(32px);
+            }
+            h2 {
+              @include adjust-font-size-to(22px);
+            }
+          }
+        }
+      }
+      .entry-meta {
+        @include adjust-font-size-to(14px);
+        @include leader(3);
+        @include trailer(2);
+        .edit-link {
+          color: $brand-color-darker;
+          text-decoration: none;
+          &:hover {
+            background: none;
+            color: desaturate(darken($brand-color, 50), 15);
+          }
+        }
+        .author-info {
+          @include adjust-font-size-to(14px);
+          @include leader(3);
+          padding: $grid-padding;
+          background: $function-color;
+          color: $brand-color-darker;
+          @include border-radius(3px);
+          @include box-shadow(darken($function-color, 5), 1px, 1px, 1px);
+          .author-avatar {
+            float: left;
+            width: columns(1,7);
+            img {
+              padding: 3px;
+              background: $white;
+              border: 1px solid $function-color;
+            }
+          }
+          .author-description {
+            float: right;
+            width: columns(6,7);
+          }
+          @include background-clip(padding-box);
         }
       }
     }
-    .nav-next {
-      display: inline-block;
-      float: right;
-      a:after {
+    .more-link {
+      @extend .heading-font;
+      @include adjust-font-size-to(13px);
+      &:hover {
+        text-decoration: underline;
+      }
+      &:after {
         content: "\FFEB";
         padding-left: 5px;
       }
     }
-    .nav-previous {
-      display: inline-block;
-      float: left;
-      a:before {
-        content: "\FFE9";
-        padding-right: 5px;
+    .navigation {
+      @extend .clearfix;
+      @extend .heading-font;
+      .section-heading {
+        @include adjust-font-size-to(15px);
+        @include rhythm(0, 0, 1, 0);
+      }
+      .nav-next, .nav-previous {
+        a {
+          @include adjust-font-size-to(18px);
+          color: $function-color-darker;
+          text-decoration: none;
+          &:hover {
+            color: $brand-color-dark;
+          }
+        }
+      }
+      .nav-next {
+        display: inline-block;
+        float: right;
+        a:after {
+          content: "\FFEB";
+          padding-left: 5px;
+        }
+      }
+      .nav-previous {
+        display: inline-block;
+        float: left;
+        a:before {
+          content: "\FFE9";
+          padding-right: 5px;
+        }
+      }
+    }
+    .page-numbers {
+      @extend .navigation;
+      @include rhythm(1,0,1,0);
+      li {
+        list-style-type: none;
+        float: left;
+      }
+    }
+    .page-links {
+        @extend .navigation;
+    }
+    .comments-area {
+      @include leader;
+      border-color: $function-color-dark;
+      .comments-title {
+        @include trailer;
+      }
+      ol.commentlist {
+        list-style: none;
+        @include trailer(2);
+        text-indent: 0;
+        @include leading-border(1px, lines-for-font-size(18px), $base-font-size, dashed);
+        padding-top: 0;
+        li {
+          &.alt!, &.bypostauthor!, &.byuser!, &.comment-author-admin! {}
+          &.comment {
+            @extend .clearfix;
+            @include trailing-border(1px, lines-for-font-size(18px), $base-font-size, dashed);
+            border-color: $function-color-dark;
+            padding: $grid-padding;
+            .vcard {
+              @extend .sans-font;
+              @include adjust-font-size-to(14px);
+              color: $function-color-dark;
+              font-weight: 400;
+              a {
+                color: $function-color-dark;
+              }
+              cite.fn {
+                font-style: italic;
+                a.url! {}
+              }
+              img {
+                float: right;
+                @include rhythm-borders(1px, 1/3);
+                margin-left: gutter();
+                border-color: $function-color;
+                background: $white;
+                &.avatar {}
+                &.avatar-32!, &.photo! {}
+              }
+              span.says! {}
+            }
+            p {
+              @include adjust-font-size-to(16px);
+              @include rhythm(0, 0, 1, 0);
+            }
+            ul {
+              @include adjust-font-size-to(16px);
+              @include rhythm(0, 0, 1, 0);
+              list-style: square;
+            }
+            .reply {
+              @include adjust-font-size-to(11px);
+              .comment-edit-link {
+                font-weight: 600;
+                color: $alert-color-dark;
+                a {
+                  font-weight: 600;
+                }
+              }
+            }
+            .children {
+              list-style: none;
+              @include leader;
+              text-indent: 0;
+              li {
+                &.alt!, &.bypostauthor!, &.byuser!, &.comment!, &.comment-author-admin! {}
+                &.depth-2, &.depth-3, &.depth-4, &.depth-5 {
+                  @include apply-side-rhythm-border(left, 2px, .25);
+                  @include trailer;
+                  border-bottom: none;
+                }
+                &.depth-2 {
+                  border-color: $function-color;
+                }
+                &.depth-3 {
+                  border-color: $function-color-dark;
+                }
+                &.depth-4 {
+                  border-color: $function-color-darker;
+                }
+                &.depth-5!, &.odd! {}
+              }
+            }
+          }
+          &.even {
+            background: shade($function-color-light, 1%);
+          }
+          &.odd {
+            background: shade($function-color-light, 2%);
+          }
+          &.parent {
+            border-left: 1px solid $function-color-dark;
+          }
+          &.thread-alt!, &.thread-even!, &.thread-odd! {}
+        }
+      }
+    }
+    form#commentform {
+      label {
+        width: 120px;
+        display: inline-block;
+        .required {
+          color: $alert-color;
+        }
+      }
+      textarea, input[type=text], , input[type=email], input[type=password] {
+        padding: 4px 6px;
+        width: 350px;
+        color: #555;
+        border: 1px solid;
+        border-color: #a8acbc #babdcc #c0c3d2;
+        float: right;
+        &:focus {
+          border-color: $alert-color;
+          background: $function-color;
+        }
+      }
+      textarea {
+        height: 46px;
+        clear: both;
+      }
+      .form-allowed-tags {
+        display: none;
+      }
+      input[type=submit] {
+        @include button($function-color-light, $action-color-lighter);
+      }
+    }
+
+    p.subscribe-to-comments, .comment-rss {
+      height: 32px;
+      text-indent: 42px;
+      padding: 5px 0 0;
+    }
+
+    p.subscribe-to-comments {
+      input {
+        margin: 5px 3px 3px !important;
+        border: 0;
+        outline: 0;
+      }
+      label {
+        top: -2px;
+        color: #666;
       }
     }
   }
-  .page-numbers {
-      @extend .navigation;
-	  li {
-		  list-style-type: none;
-		  float: left;
-	  }
-  }
-  .page-links {
-      @extend .navigation;
+  .secondary {
+    .widgets {
+      @include padding-leader(2);
+      @include padding-trailer(2);
+      .wp-tag-cloud {
+        @extend .clearfix;
+        li {
+          position: relative;
+          float: left;
+          margin: 0 12px 8px 0;
+        }
+        a {
+          display: block;
+          height: $tagsHeight;
+          line-height: $tagsHeight - 3px;
+          padding: 0 9px 0 8px;
+          font-size: 12px;
+          color: #555;
+          text-decoration: none;
+          text-shadow: 0 1px white;
+          background: #fafafa;
+          border-width: 1px;
+          border-style: solid;
+          border-color: #dadada #d2d2d2 #c5c5c5;
+          @extend .round-corners;
+          @include linear-gradient(top, #fcfcfc, #f0f0f0);
+          @include box-shadow(inset 0 0 0 1px rgba(white, .7), 0 1px 2px rgba(black, .05));
+          &:hover {
+            @include box-shadow(inset 0 0 0 1px rgba(white, .15), 1px 1px 2px rgba(black, .2));
+          }
+        }
+      }
+    }
   }
 }

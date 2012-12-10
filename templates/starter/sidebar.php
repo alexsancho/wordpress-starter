@@ -8,11 +8,8 @@
  * @copyright 2012 [Your Name]
  */
 ?>
-	<aside id="sidebar" role="complementary">
-		<ul id="widgets" class="side-nav">
-			<li>
-				<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => '', 'menu_class' => 'nav' ) ); ?>
-			</li>
+	<aside class="secondary" role="complementary">
+		<ul class="widgets">
 			<?php dynamic_sidebar( 'primary-widget-area' ); ?>
 		</ul>
 	</aside>

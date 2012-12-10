@@ -16,10 +16,6 @@
   font-weight: 400;
 }
 
-.h1-font {
-  @extend .heading-font;
-}
-
 strong {
   font-weight: 600;
 }
@@ -32,8 +28,8 @@ em {
 @include establish-baseline;
 
 html {
-	// Override the default line height to allow for smaller baseline increments.
-	@include adjust-leading-to(4);
+  // Override the default line height to allow for smaller baseline increments.
+  @include adjust-leading-to(2);
 }
 
 body {
@@ -41,62 +37,55 @@ body {
 }
 
 p {
-  margin: 0 0 rhythm(2);
+  @include adjust-font-size-to(18px);
+  &:first-child {
+    @include leader;
+  }
+  @include trailer;
 }
 
-#{headings(2, 6)} {
+#{headings(1, 6)} {
   @extend .heading-font;
+  @include rhythm(0, 0, 1, 0);
 }
 
 h6 {
-    @include adjust-font-size-to($fs-h6);
-    @include rhythm(4, 0, 0, 0, $fs-h6);
-	letter-spacing: .03em;
-	text-transform: uppercase;
+  @include adjust-font-size-to($fs-h6);
+  letter-spacing: .03em;
+  text-transform: uppercase;
 }
 
 h5 {
-    @include adjust-font-size-to($fs-h5);
-    @include rhythm(4, 0, 0, 0, $fs-h5);
+  @include adjust-font-size-to($fs-h5);
 }
 
-h4 {
-    @include adjust-font-size-to($fs-h4);
-    @include rhythm(4, 0, 0, 0, $fs-h4);
+h4, .author-description h2, h2.comments-title, .entry-header h2, h3#reply-title {
+  @include adjust-font-size-to($fs-h4);
 }
 
 h3 {
-    @include adjust-font-size-to($fs-h3);
-    @include rhythm(2, 0, 0, 2, $fs-h3);
+  @include adjust-font-size-to($fs-h3);
 }
 
 h2 {
-    @include adjust-font-size-to($fs-h2);
-    @include rhythm(0, 0, 0, 1, $fs-h2);
+  @include adjust-font-size-to($fs-h2);
 }
 
-h1 {
-	@include adjust-font-size-to($fs-h1);
-	@include rhythm(0, 0, 0, 1, $fs-h1);
+.entry-title {
+  @include adjust-font-size-to($fs-h1);
 }
 
-h1.entry-title, .author-description h2 {
-    @include adjust-font-size-to($fs-h2);
-    @include rhythm(1, 0, 0, 0, $fs-h1);
-	@include trailer;
-}
-
-h2.entry-title, h2.comments-title, .entry-header h2, h3#reply-title {
-	@extend h4;
+h1.archive-title {
+  @include adjust-font-size-to($fs-h1);
+  font-weight: 400;
 }
 
 dl, ul, ol {
-  margin-bottom: rhythm(3);
+  @include trailer;
 }
 
 blockquote {
-  @include leading-border(2px, .5);
-  @include trailing-border(2px, .5);
+  @include apply-side-rhythm-border(left, 2px, 1);
   quotes: "\201C""\201D""\2018""\2019";
   &:before {
     color: $function-color-dark;
@@ -105,26 +94,37 @@ blockquote {
   }
   p {
     display: inline;
+    cite {
+      @include adjust-font-size-to(13px);
+    }
   }
 }
 
-#sidebar {
-  h3 {
-    @include adjust-font-size-to(16px);
-  }
-  h4 {
-    @include adjust-font-size-to(13px);
-  }
+.nav-menu {
   li {
-      @include rhythm(0, 0, 0, 0, 16px);
-	  a {
-	      @include adjust-font-size-to(16px);
-	      @include rhythm(0, 0, 0, 0, 16px);
-	  }
+    a {
+      @include adjust-font-size-to(18px);
+    }
   }
 }
 
-#main {
+.secondary {
+  .widget-container {
+    h3 {
+      @include adjust-font-size-to(24px);
+      @include leader;
+    }
+    h4 {
+      @include adjust-font-size-to(22px);
+    }
+    a {
+      @include adjust-font-size-to(16px);
+    }
+    @include trailer(2);
+  }
+}
+
+.main {
   ul {
     list-style: inside disc;
   }

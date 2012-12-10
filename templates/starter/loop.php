@@ -12,10 +12,7 @@
  * @author    [Your Name]
  * @copyright 2012 [Your Name]
  */
-?>
-	<div id="primary" class="site-content">
-		<div id="content" role="main">
-<?php
+
 /* If there are no posts to display, such as an empty archive page */
 if ( have_posts() ):
 	while ( have_posts() ):
@@ -31,6 +28,3 @@ if ( have_posts() ):
 else:
 	get_template_part( 'content', 'none' );
 endif;
-?>
-		</div>
-	</div>

@@ -24,32 +24,5 @@
 }
 
 .round-corners {
-  @include border-radius($radius);
-}
-
-.round-right-corners {
-  @extend .round-corners;
-  @extend .clear-left-rounding;
-}
-
-.round-left-corners {
-  @extend .round-corners;
-  @extend .clear-right-rounding;
-}
-
-.round-top-corners {
-  @extend .round-corners;
-  @extend .clear-bottom-rounding;
-}
-
-.round-bottom-corners {
-  @extend .round-corners;
-  @extend .clear-top-rounding;
-}
-
-.hover-underline {
-  @extend .clear-underline;
-  &:hover {
-    text-decoration: underline;
-  }
+  @include border-radius(3px);
 }

@@ -7,37 +7,51 @@
   iframe,
   object,
   embed {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-	  height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 }
 
-@mixin gradient($from, $to) {
-  background: -webkit-gradient(linear, left top, left bottom, from($from), to($to));
-  background: -moz-linear-gradient(top, $from, $to);
-  @include background-clip(padding-box);
+@function inverse-side($side) {
+  @if $side == top { @return bottom; }
+  @else if $side == bottom { @return top; }
+  @else if $side == left { @return right; }
+  @else if $side == right { @return left; }
 }
 
-@mixin button($color: #fff, $bg-color: #50A7E7, $font-size: 12px, $radius: 15px) {
-	@include gradient($bg-color, darken($bg-color, 25%));
-	border: 1px solid darken($bg-color, 15%);
-	color: $color;
-	cursor: pointer;
-    @include adjust-font-size-to($font-size);
-	padding: 4px 15px;
-	text-decoration: none;
-	text-shadow: 0 1px 0 darken($color, 50%);
-	@include box-shadow(0 1px 1px darken($bg-color, 10%) inset, 0 1px 1px darken($bg-color, 5%));
-	@include border-radius($radius);
-	&:hover {
-		@include gradient(darken($bg-color, 25%), $bg-color);
-		@include box-shadow(0 1px 1px darken($bg-color, 20%) inset, 0 1px 1px darken($bg-color, 10%));
-	}
-	&:active {
-     @include box-shadow(0 0 10px darken($bg-color, 30%) inset);
-     text-shadow: 0 -1px 0 darken($color, 90%);
+@mixin linear-gradient($gradientLine, $colorStops...) {
+  background-image: -webkit-linear-gradient($gradientLine, $colorStops);
+  background-image: -moz-linear-gradient($gradientLine, $colorStops);
+  @if length($gradientLine) == 2 {
+    background-image: linear-gradient(to #{inverse-side(nth($gradientLine, 1))} #{inverse-side(nth($gradientLine, 2))}, $colorStops);
+  } @else {
+    background-image: linear-gradient(to #{inverse-side($gradientLine)}, $colorStops);
+  }
+}
+
+@mixin button($color: #fff, $bg-color: #50A7E7, $font-size: 12px, $radius: 15px, $float: right) {
+  @include linear-gradient(top, $bg-color, darken($bg-color, 25%));
+  border: 1px solid darken($bg-color, 15%);
+  color: $color;
+  cursor: pointer;
+  float: $float;
+  @include adjust-font-size-to($font-size);
+  @include leader(2);
+  @include trailer;
+  padding: 4px 15px;
+  text-decoration: none;
+  text-shadow: 0 1px 0 darken($color, 50%);
+  @include box-shadow(0 1px 1px darken($bg-color, 10%) inset, 0 0 1px darken($bg-color, 5%));
+  @include border-radius($radius);
+  &:hover {
+    @include linear-gradient(top, darken($bg-color, 25%), $bg-color);
+    @include box-shadow(0 1px 1px darken($bg-color, 20%) inset, 0 0 1px darken($bg-color, 10%));
+  }
+  &:active {
+    @include box-shadow(0 0 10px darken($bg-color, 30%) inset);
+    text-shadow: 0 -1px 0 darken($color, 90%);
   }
 }

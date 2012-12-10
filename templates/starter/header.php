@@ -47,15 +47,17 @@
 			<link rel="alternate" type="application/rss+xml" title="<?php echo get_bloginfo( 'name' ); ?> Feed" href="<?php echo home_url(); ?>/feed/">
 		<?php endif; ?>
 	</head>
-	<body id="inner-page" <?php body_class(); ?>>
-		<header id="header" role="banner">
-			<hgroup>
-				<h1>
-					<a href="<?php echo site_url();?>"><span class="assistive-text"><?php bloginfo( 'name' );?></span></a>
-				</h1>
-				<h2 class="assistive-text"><?php bloginfo( 'description' );?></h2>
-			</hgroup>
-		</header>
-		<div id="page">
-			<?php get_sidebar(); ?>
-			<section id="main" role="document">
+	<body <?php body_class(); ?>>
+		<div class="page">
+			<header class="header" role="banner">
+				<hgroup>
+					<h1>
+						<a href="<?php echo site_url();?>"><span class="assistive-text"><?php bloginfo( 'name' );?></span></a>
+					</h1>
+					<h2 class="assistive-text"><?php bloginfo( 'description' );?></h2>
+				</hgroup>
+			</header>
+			<div class="container">
+				<?php wp_nav_menu( array( 'container' => 'nav', 'container_class' => 'nav-menu', 'theme_location' => 'primary', 'fallback_cb' => 'starter_page_menu' ) ); ?>
+				<section class="content" role="document">
+					<div class="main" role="main">

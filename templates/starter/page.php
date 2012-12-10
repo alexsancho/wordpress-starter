@@ -13,11 +13,8 @@
  * @copyright 2012 [Your Name]
  */
 
-	get_header( get_post_format() );
-?>
-	<div id="primary" class="site-content">
-		<div id="content" role="main">
-<?php
+get_header( get_post_format() );
+
 while ( have_posts() ):
 	the_post();
 
@@ -28,8 +25,5 @@ while ( have_posts() ):
 
 	comments_template( '', true );
 endwhile;
-?>
-		</div>
-	</div>
-<?php
-	get_footer( get_post_format() );
+
+get_footer( get_post_format() );

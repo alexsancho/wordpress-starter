@@ -7,8 +7,8 @@ Gem::Specification.new do |s|
 
   # Gem Details
   s.name = "wordpress-starter"
-  s.description = %q{This Compass extension provides support for creating WordPress Themes and working with WordPress Theme Frameworks using Sass.}
-  s.summary = %q{This is a blank WordPress theme configured to use Sass.}
+  s.description = %q{This Compass extension provides support for creating WordPress Themes using Sass.}
+  s.summary = %q{This is a basic WordPress theme configured to use Sass, it includes .}
   s.authors = ["Alex Sancho"]
   s.email = ["alex@alexsancho.name"]
   s.homepage = "https://github.com/alexsancho/wordpress-starter"
@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.6}
 
   # Gems Dependencies
-  s.add_dependency("sass",      [">=3.2.0"])
-  s.add_dependency("compass",   [">= 0.12.1"])
+  s.add_dependency("sass",    [">=3.2.0"])
+  s.add_dependency("compass", [">= 0.12.2"])
+  s.add_dependency("susy",    ["~> 1.0.5"])
 end
