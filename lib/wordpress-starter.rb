@@ -3,6 +3,7 @@
 # By default, you should always included Compass. Do not include your
 # extension.
 require 'compass'
+require 'zurb-foundation'
 require "susy"
 
 # This tells Compass what your Compass extension is called, and where to find
@@ -16,7 +17,7 @@ Compass::Frameworks.register('wordpress', :path => extension_path)
 # a prerelease version
 # Date is in the form of YYYY-MM-DD
 module WordpressStarter
-  VERSION = "0.1"
+  VERSION = "0.2"
   DATE = "2012-12-06"
 end
 

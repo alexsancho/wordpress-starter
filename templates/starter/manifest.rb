@@ -1,5 +1,5 @@
 # Description
-description "This is a blank WordPress theme configured to use Sass"
+description "This is a basic WordPress theme configured to use Sass"
 
 # Auto discover directories
 discover :directories
@@ -145,5 +145,5 @@ help %Q{
 # Compass Extension Welcome Message
 # Users will see this when they create a new project using this template.
 welcome_message %Q{
-    This is a blank WordPress theme configured to use Sass
+    This is a basic WordPress theme configured to use Sass
 }

@@ -1,1 +1,6 @@
-This is a blank WordPress theme configured to use Sass
+=== Starter ===
+Contributors: alexsancho
+Tags:
+Requires at least:
+Tested up to:
+Stable tag:
