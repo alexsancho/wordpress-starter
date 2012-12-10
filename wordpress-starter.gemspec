@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   # Gem Details
   s.name = "wordpress-starter"
   s.description = %q{This Compass extension provides support for creating WordPress Themes using Sass.}
-  s.summary = %q{This is a basic WordPress theme configured to use Sass, it includes .}
+  s.summary = %q{This is extension provides a starting point to build WordPress themes.}
   s.authors = ["Alex Sancho"]
   s.email = ["alex@alexsancho.name"]
   s.homepage = "https://github.com/alexsancho/wordpress-starter"
