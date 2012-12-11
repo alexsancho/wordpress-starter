@@ -494,7 +494,7 @@ class Bootstrap_Walker_Nav_Menu extends Walker_Nav_Menu {
 	function start_lvl( &$output, $depth ) {
 		$indent  = str_repeat( "\t", $depth );
 		$submenu = ( $depth > 0 ) ? ' sub-menu' : '';
-		$output .= "\n$indent<ul class=\"dropdown-menu$submenu depth_$depth\">\n";
+		$output .= "\n$indent<ul class=\"dropdown-menu$submenu depth_$depth\" role=\"menu\" aria-labelledby=\"dLabel\">\n";
 	}
 
 	function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
@@ -513,7 +513,7 @@ class Bootstrap_Walker_Nav_Menu extends Walker_Nav_Menu {
 			unset( $classes[$divider_class_position] );
 		}
 
-		$classes[] = ( $args['has_children'] ) ? 'dropdown dropdown-hover' : '';
+		$classes[] = ( $args['has_children'] ) ? 'dropdown dropdown-toggle' : '';
 		$classes[] = ( $item->current OR $item->current_item_ancestor ) ? 'active' : '';
 		$classes[] = 'menu-item-' . $item->ID;
 
@@ -534,7 +534,7 @@ class Bootstrap_Walker_Nav_Menu extends Walker_Nav_Menu {
 		$attributes .= ! empty( $item->xfn ) ? ' rel="'.esc_attr( $item->xfn ).'"' : '';
 		$attributes .= ! empty( $item->url ) ? ' href="'.esc_attr( $item->url ).'"' : '';
 		// Line below removed to prevent toggle-lock AND ensure top level links function
-		// $attributes .= ($args['has_children']) ? ' class="dropdown-toggle" data-toggle="dropdown"' : '';
+		$attributes .= ($args['has_children']) ? ' class="dropdown-toggle" data-toggle="dropdown" data-target="#"' : '';
 
 		$item_output  = $args['before'];
 		$item_output .= '<a'.$attributes.'>';
@@ -898,17 +898,17 @@ function pagination( $query = false ) {
 
 	if ( is_single() ) {
 		?>
-		<nav id="comment-nav-below" class="navigation nav nav-pills clearfix" role="navigation">
+		<nav id="comment-nav-below" class="navigation pager" role="navigation">
 			<h1 class="assistive-text section-heading"><?php _e( 'Post Navigation', 'bootstrap' ); ?></h1>
 		<?php
 		if ( $previous = get_previous_post() ):?>
-				<div class="nav-previous pull-left">
+				<div class="nav-previous previous">
 					<a href="<?php echo get_permalink( $previous );?>" title="<?php printf( __( 'Permalink to %s', 'bootstrap' ), get_the_title( $previous ) );?>"><?php _e( 'Previous', 'bootstrap' ); ?></a>
 				</div>
 			<?php endif;?>
 		<?php
 		if ( $next = get_next_post() ):?>
-				<div class="nav-next pull-right">
+				<div class="nav-next next">
 					<a href="<?php echo get_permalink( $next );?>" title="<?php printf( __( 'Permalink to %s', 'bootstrap' ), get_the_title( $next ) );?>"><?php _e( 'Next', 'bootstrap' ); ?></a>
 				</div>
 			<?php endif;?>

@@ -58,8 +58,20 @@
 				</hgroup>
 			</header>
 			<div class="row">
-				<div class="span2">
-					<?php wp_nav_menu( array( 'container' => 'nav', 'container_class' => 'nav-menu', 'theme_location' => 'primary', 'fallback_cb' => 'bootstrap_page_menu' ) ); ?>
+				<div class="navbar">
+					<div class="navbar-inner">
+						<?php
+						wp_nav_menu(
+							array(
+								'container'       => '',
+								'menu_class'      => 'nav',
+								'theme_location'  => 'primary',
+								'fallback_cb'     => 'foundation_page_menu',
+								'walker'          => new Bootstrap_Walker_Nav_Menu(),
+							)
+						);
+						?>
+					</div>
 				</div>
 				<section class="content row" role="document">
-					<div class="main span7" role="main">
+					<div class="main span9" role="main">
