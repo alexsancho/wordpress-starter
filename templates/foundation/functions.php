@@ -423,7 +423,7 @@ add_filter( 'get_image_tag_class', 'foundation_image_tag_class', 0, 4 );
  */
 function foundation_add_class_attachment_link( $html ) {
 	$postid = get_the_ID();
-	$html   = str_replace( '<a', '<a class="thumbnail"', $html );
+	$html   = str_replace( '<a', '<a class="th"', $html );
 
 	return $html;
 }
@@ -488,7 +488,7 @@ function foundation_page_menu() {
 
 	$args = array(
 		'sort_column' => 'menu_order, post_title',
-		'menu_class'  => 'nav-menu',
+		'menu_class'  => 'twelve columns',
 		'include'     => '',
 		'exclude'     => '',
 		'echo'        => true,
@@ -498,6 +498,26 @@ function foundation_page_menu() {
 	);
 
 	wp_page_menu( $args );
+}
+
+/**
+ * Navigation Menu Adjustments
+ *
+ * @since [foundation] 1.0
+ */
+class foundation_navigation extends Walker_Nav_Menu {
+	function start_lvl( &$output, $depth ) {
+		$indent  = str_repeat( "\t", $depth );
+		$output .= "\n$indent<ul class=\"flyout\">\n";
+	}
+
+	function display_element( $element, &$children_elements, $max_depth, $depth=0, $args, &$output ) {
+		$id_field = $this->db_fields['id'];
+		if ( ! empty( $children_elements[ $element->$id_field ] ) ) {
+			$element->classes[] = 'has-flyout';
+		}
+		Walker_Nav_Menu::display_element( $element, $children_elements, $max_depth, $depth, $args, $output );
+	}
 }
 
 /**
@@ -654,7 +674,7 @@ function foundation_entry_meta() {
 	$tag_list = get_the_tag_list( '', __( ', ', 'foundation' ) );
 
 	$date = sprintf(
-		'<a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s">%4$s</time></a>',
+		'<a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s" pubdate>%4$s</time></a>',
 		esc_url( get_permalink() ),
 		esc_attr( get_the_time() ),
 		esc_attr( get_the_date( 'c' ) ),
@@ -847,13 +867,30 @@ function pagination( $query = false ) {
 						'prev_next' => True,
 						'prev_text' => __( '&larr;' ),
 						'next_text' => __( '&rarr;' ),
-						'type'      => 'list',
+						'type'      => 'array',
 					)
 				);
 
 				// Display the pagination if more than one page is found
 				if ( $paginate_links ) {
-					echo $paginate_links;
+					foreach ( $paginate_links as $link ) {
+						if ( strpos( $link, 'prev' ) !== false or strpos( 'next', $link ) !== false ) {
+							$links[] = '<li class="arrow">' . $link . '</li>';
+						}
+						elseif ( strpos( $link, 'current' ) !== false ) {
+							preg_match( '/<span[^>]+>(\d+)<\/span>/i', $link , $m);
+
+							$links[] = '<li class="current"><a href="">' . $m[1] . '</a></li>';
+						}
+						else {
+							$links[] = '<li>' . $link . '</li>';
+						}
+					}
+
+
+					echo '<ul class="pagination">';
+					echo implode( "\n", $links );
+					echo '</ul>';
 				}
 			}
 		}

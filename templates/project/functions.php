@@ -631,7 +631,7 @@ function starter_entry_meta() {
 	$tag_list = get_the_tag_list( '', __( ', ', 'starter' ) );
 
 	$date = sprintf(
-		'<a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s">%4$s</time></a>',
+		'<a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s" pubdate>%4$s</time></a>',
 		esc_url( get_permalink() ),
 		esc_attr( get_the_time() ),
 		esc_attr( get_the_date( 'c' ) ),
@@ -1116,6 +1116,32 @@ function starter_user_contactmethods( $contactmethods ) {
 }
 
 add_filter( 'user_contactmethods', 'starter_user_contactmethods' );
+
+/**
+ * Allow more HTML tags in the editor
+ * Add more languages to spell check
+ *
+ * @since [starter] 1.0
+ */
+function starter_change_mce_options( $array ) {
+	$ext = 'pre[id|name|class|style],iframe[id|class|title|style|align|frameborder|height|longdesc|marginheight|marginwidth|name|scrolling|src|width]';
+
+	if ( isset( $array['extended_valid_elements'] ) ) {
+		$array['extended_valid_elements'] .= ','.$ext;
+	}
+	else {
+		$array['extended_valid_elements'] = $ext;
+	}
+
+	// Add block format elements you want to show in dropdown
+	$array['theme_advanced_blockformats'] = 'h1,h2,h3,h4,p,code,blockquote';
+	$array['theme_advanced_disable']      = 'strikethrough,underline,forecolor,justifyfull';
+	$array[ 'spellchecker_languages' ]    = '+Spanish=sp, English=en';
+
+	return $array;
+}
+
+add_filter( 'tiny_mce_before_init', 'starter_change_mce_options' );
 
 /**
  * Adds previous/next links to post edition window

@@ -58,6 +58,6 @@
 				</hgroup>
 			</header>
 			<div class="container">
-				<?php wp_nav_menu( array( 'container' => 'nav', 'container_class' => 'nav-menu', 'theme_location' => 'primary', 'fallback_cb' => 'foundation_page_menu' ) ); ?>
+				<?php wp_nav_menu( array( 'container' => 'nav', 'container_class' => 'twelve columns', 'menu_class' => 'nav-bar radius', 'theme_location' => 'primary', 'fallback_cb' => 'foundation_page_menu', 'walker' => new mml_navigation() ) ); ?>
 				<section class="content" role="document">
 					<div class="main" role="main">

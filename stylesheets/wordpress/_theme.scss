@@ -54,7 +54,7 @@ a {
   @extend .clearfix;
   background: $white;
   border: 1px solid rgba(tint($function-color-darker, 1%), .2);
-  @extend .round-corners;
+  @include border-radius(3px);
   @include box-shadow(darken($brand-color-darker, 30%), 0, 2px, 15px);
   .nav-menu {
     li {
