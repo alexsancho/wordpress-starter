@@ -379,6 +379,7 @@ function starter_remove_thumbnail_dimensions( $html, $id, $alt, $title ) {
 add_filter( 'post_thumbnail_html', 'starter_remove_thumbnail_dimensions', 10, 4 );
 add_filter( 'image_send_to_editor', 'starter_remove_thumbnail_dimensions', 10, 4 );
 add_filter( 'get_image_tag', 'starter_remove_thumbnail_dimensions', 10, 4 );
+add_filter( 'starter_shortcode_caption_content', 'starter_remove_thumbnail_dimensions', 10, 4 );
 
 /**
  * Clean the output of attributes of images in editor.
@@ -406,6 +407,7 @@ function starter_add_class_attachment_link( $html ) {
 }
 
 add_filter( 'wp_get_attachment_link', 'starter_add_class_attachment_link', 10, 1 );
+add_filter( 'starter_shortcode_caption_content', 'starter_add_class_attachment_link', 10, 1 );
 
 /**
  * Filter in a link to a content ID attribute for the next/previous image links on image attachment pages
@@ -961,10 +963,11 @@ function starter_shortcode_caption( $atts, $content = null ) {
 		$caption = $match[2];
 	}
 
-	$idtag = ( $id ) ? 'id="' . esc_attr( $id ) . '" ' : '';
+	$id = $id ? $id : 'attachment_' . rand( 1, 999 );
+	$idtag = 'id="' . esc_attr( $id ) . '"';
 
 	$out[] = '<figure ' . $idtag . 'aria-describedby="figcaption_' . $id . '" class="post-image wp-caption ' . $align . '">';
-	$out[] = do_shortcode( $content );
+	$out[] = apply_filters( 'starter_shortcode_caption_content', do_shortcode( $content ), $id, '', '' );
 	$out[] = '<figcaption id="figcaption_' . $id . '" class="caption wp-caption-text">' . wpautop( wptexturize( $caption ) ) . '</figcaption>';
 	$out[] = '</figure>';
 
@@ -973,7 +976,6 @@ function starter_shortcode_caption( $atts, $content = null ) {
 
 add_shortcode( 'wp_caption', 'starter_shortcode_caption' );
 add_shortcode( 'caption', 'starter_shortcode_caption' );
-
 
 /* ADMIN STUFF */
 

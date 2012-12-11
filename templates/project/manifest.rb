@@ -95,8 +95,6 @@ file 'images/bg/bg9.png'
 file 'images/bg/bg10.png'
 file 'images/bg/bg11.png'
 
-file 'images/search.png'
-
 file 'javascripts/app.js'
 file 'javascripts/moderninzr.min.js'
 

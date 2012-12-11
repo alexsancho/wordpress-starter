@@ -402,6 +402,7 @@ function foundation_remove_thumbnail_dimensions( $html, $id, $alt, $title ) {
 add_filter( 'post_thumbnail_html', 'foundation_remove_thumbnail_dimensions', 10, 4 );
 add_filter( 'image_send_to_editor', 'foundation_remove_thumbnail_dimensions', 10, 4 );
 add_filter( 'get_image_tag', 'foundation_remove_thumbnail_dimensions', 10, 4 );
+add_filter( 'foundation_shortcode_caption_content', 'foundation_remove_thumbnail_dimensions', 10, 4 );
 
 /**
  * Clean the output of attributes of images in editor.
@@ -429,6 +430,7 @@ function foundation_add_class_attachment_link( $html ) {
 }
 
 add_filter( 'wp_get_attachment_link', 'foundation_add_class_attachment_link', 10, 1 );
+add_filter( 'foundation_shortcode_caption_content', 'foundation_add_class_attachment_link', 10, 1 );
 
 /**
  * Filter in a link to a content ID attribute for the next/previous image links on image attachment pages
@@ -1021,10 +1023,11 @@ function foundation_shortcode_caption( $atts, $content = null ) {
 		$caption = $match[2];
 	}
 
-	$idtag = ( $id ) ? 'id="' . esc_attr( $id ) . '" ' : '';
+	$id = $id ? $id : 'attachment_' . rand( 1, 999 );
+	$idtag = 'id="' . esc_attr( $id ) . '"';
 
 	$out[] = '<figure ' . $idtag . 'aria-describedby="figcaption_' . $id . '" class="post-image wp-caption ' . $align . '">';
-	$out[] = do_shortcode( $content );
+	$out[] = apply_filters( 'foundation_shortcode_caption_content', do_shortcode( $content ), $id, '', '' );
 	$out[] = '<figcaption id="figcaption_' . $id . '" class="caption wp-caption-text">' . wpautop( wptexturize( $caption ) ) . '</figcaption>';
 	$out[] = '</figure>';
 
@@ -1050,12 +1053,13 @@ function foundation_gallery_shortcode( $attr ) {
 		$i = 0;
 		$output[] = '<ul class="block-grid three-up">';
 		foreach ( $attachments as $attachment ) {
-			$active = ( $i == 0) ? ' active' : '';
+			$src     = wp_get_attachment_image_src( $attachment->ID , 'full' );
+			$active  = ( $i == 0) ? ' active' : '';
 			$caption = wpautop( wptexturize( esc_attr( trim( strip_tags( $attachment->post_excerpt ) ) ) ) );
 			$data_caption = $caption ? ' data-caption="' . $caption . '"' : '';
 			$output[] = '<li class="item' . $active . '">';
 			$output[] = '<a href="' . get_attachment_link( $attachment->ID ) . '">';
-			$output[] = '<img' . $data_caption . ' src="' . wp_get_attachment_image_src( $attachment->ID , 'full' ) . '" alt="' . esc_attr( trim( strip_tags( $attachment->post_title ) ) ) . '">';
+			$output[] = '<img' . $data_caption . ' src="' . $src[0] . '" alt="' . esc_attr( trim( strip_tags( $attachment->post_title ) ) ) . '">';
 			$output[] = '</a>';
 			$output[] = '</li>';
 			++$i;
