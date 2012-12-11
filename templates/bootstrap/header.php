@@ -57,21 +57,18 @@
 					<h2 class="assistive-text"><?php bloginfo( 'description' );?></h2>
 				</hgroup>
 			</header>
-			<div class="row">
-				<div class="navbar">
-					<div class="navbar-inner">
-						<?php
-						wp_nav_menu(
-							array(
-								'container'       => '',
-								'menu_class'      => 'nav',
-								'theme_location'  => 'primary',
-								'fallback_cb'     => 'foundation_page_menu',
-								'walker'          => new Bootstrap_Walker_Nav_Menu(),
-							)
-						);
-						?>
-					</div>
+			<section class="content row" role="document">
+				<div class="span2">
+					<?php
+					wp_nav_menu(
+						array(
+							'container'       => false,
+							'menu_class'      => 'nav nav-list',
+							'theme_location'  => 'primary',
+							'fallback_cb'     => 'foundation_page_menu',
+							'walker'          => new Twitter_Bootstrap_Nav_Walker(),
+						)
+					);
+					?>
 				</div>
-				<section class="content row" role="document">
-					<div class="main span9" role="main">
+				<div class="main span7" role="main">
