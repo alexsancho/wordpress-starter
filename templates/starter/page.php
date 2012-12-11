@@ -7,23 +7,25 @@
  * and that other 'pages' on your WordPress site will use a
  * different template.
  *
- * @category  Theme
- * @package   [starter]
- * @author    [Your Name]
- * @copyright 2012 [Your Name]
+ * @package starter
+ * @since starter 1.0
  */
 
-get_header( get_post_format() );
+get_header(); ?>
 
-while ( have_posts() ):
-	the_post();
+		<div id="primary" class="content-area">
+			<div id="content" class="site-content" role="main">
 
-	/* If you want to overload this in a child theme then include a file
-	 * called content-single.php and that will be used instead.
-	 */
-	get_template_part( 'content', 'page' );
+				<?php while ( have_posts() ) : the_post(); ?>
 
-	comments_template( '', true );
-endwhile;
+					<?php get_template_part( 'content', 'page' ); ?>
 
-get_footer( get_post_format() );
+					<?php comments_template( '', true ); ?>
+
+				<?php endwhile; // end of the loop. ?>
+
+			</div><!-- #content .site-content -->
+		</div><!-- #primary .content-area -->
+
+<?php get_sidebar(); ?>
+<?php get_footer(); ?>

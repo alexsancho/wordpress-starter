@@ -1,5 +1,7 @@
 <?php
-if ( ! function_exists( 'of_options' ) ) {
+add_action( 'init', 'of_options' );
+
+if ( !function_exists( 'of_options' ) ) {
 	function of_options() {
 		// Access the WordPress Categories via an Array
 		$of_categories     = array();
@@ -99,7 +101,7 @@ if ( ! function_exists( 'of_options' ) ) {
 			'name' => 'Hello there!',
 			'desc' => '',
 			'id'   => 'introduction',
-			'std'  => '<h3 style="margin: 0 0 10px;">'.__( 'Welcome to the WordPress Starter Theme.', 'foundation' ).'</h3> This is a demo of the SMOF options framework, edit the options.php file inside the theme folder to setup your own, you can learn about the SMOF at <a href="//aquagraphite.com/2011/11/smof-documentation/" target="_blank">aquagraphite</a>.',
+			'std'  => '<h3 style=\"margin: 0 0 10px;\">Welcome to the Options Framework demo.</h3> This is a slightly modified version of the original options framework by Devin Price with a couple of aesthetical improvements on the interface and some cool additional features. If you want to learn how to setup these options or just need general help on using it feel free to visit my blog at <a href="//aquagraphite.com/2011/09/29/slightly-modded-options-framework/">AquaGraphite.com</a>',
 			'icon' => true,
 			'type' => 'info',
 		);
@@ -444,7 +446,7 @@ if ( ! function_exists( 'of_options' ) ) {
 			'name' => 'Hello there!',
 			'desc' => '',
 			'id'   => 'introduction_2',
-			'std'  => '<h3 style=\"margin: 0 0 10px;\">Grouped Options.</h3> You can group a bunch of options under a single heading by removing the 'name' value from the options array except for the first option in the group.',
+			'std'  => '<h3 style="margin: 0 0 10px;">Grouped Options.</h3> You can group a bunch of options under a single heading by removing the "name" value from the options array except for the first option in the group.',
 			'icon' => true,
 			'type' => 'info',
 		);

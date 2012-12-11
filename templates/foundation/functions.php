@@ -1142,6 +1142,125 @@ function foundation_user_contactmethods( $contactmethods ) {
 add_filter( 'user_contactmethods', 'foundation_user_contactmethods' );
 
 /**
+ * Allow more HTML tags in the editor
+ * Add more languages to spell check
+ *
+ * @since [foundation] 1.0
+ */
+function foundation_change_mce_options( $array ) {
+	$ext = 'pre[id|name|class|style],iframe[id|class|title|style|align|frameborder|height|longdesc|marginheight|marginwidth|name|scrolling|src|width]';
+
+	if ( isset( $array['extended_valid_elements'] ) ) {
+		$array['extended_valid_elements'] .= ','.$ext;
+	}
+	else {
+		$array['extended_valid_elements'] = $ext;
+	}
+
+	// Add block format elements you want to show in dropdown
+	$array['theme_advanced_blockformats'] = 'h1,h2,h3,h4,p,code,blockquote';
+	$array['theme_advanced_disable']      = 'strikethrough,underline,forecolor,justifyfull';
+	$array[ 'spellchecker_languages' ]    = '+Spanish=sp, English=en';
+
+	return $array;
+}
+
+add_filter( 'tiny_mce_before_init', 'foundation_change_mce_options' );
+
+/**
+ * Define custom styles for the dropdown menu
+ *
+ * @since [foundation] 1.0
+ */
+function foundation_style_formats( $settings ) {
+	$style_formats = array(
+		array(
+			'title'    => __( 'Button', 'foundation' ),
+			'selector' => 'a',
+			'classes'  => 'button',
+			'exact'    => true,
+		),
+		array(
+			'title'    => __( 'Lead', 'foundation' ),
+			'selector' => 'p',
+			'classes'  => 'lead',
+		),
+		array(
+			'title'    => __( 'Label', 'foundation' ),
+			'inline'   => 'span',
+			'classes'  => 'label',
+		),
+		array(
+			'title'    => __( 'Panel', 'foundation' ),
+			'block'    => 'div',
+			'classes'  => 'panel',
+			'wrapper'  => true,
+		),
+		array(
+			'title'    => __( 'Panel callout', 'foundation' ),
+			'block'    => 'div',
+			'classes'  => 'panel callout',
+			'wrapper'  => true,
+		),
+		array(
+			'title'    => __( 'Radius (Panel, Label, Button)', 'foundation' ),
+			'selector' => 'a.button, span.label, div.panel, div.panel.callout',
+			'classes'  => 'radius',
+		),
+		array(
+			'title'    => __( 'Round (Label, Button)', 'foundation' ),
+			'selector' => 'a.button, span.label',
+			'classes'  => 'round',
+		),
+		array(
+			'title'    => __( 'Alert (Label, Button)', 'foundation' ),
+			'selector' => 'a.button, span.label',
+			'classes'  => 'alert',
+		),
+		array(
+			'title'    => __( 'Message (Label, Button)', 'foundation' ),
+			'selector' => 'a.button, span.label',
+			'classes'  => 'success',
+		),
+		array(
+			'title'    => __( 'Secondary (Label, Button)', 'foundation' ),
+			'selector' => 'a.button, span.label',
+			'classes'  => 'secondary',
+		),
+		array(
+			'title'    => __( 'Subheader (Header)', 'foundation' ),
+			'selector' => 'h1, h2, h3, h4, h5, h6',
+			'classes'  => 'subheader',
+		),
+		array(
+			'title'    => __( 'Keyborad', 'foundation' ),
+			'inline'   => 'kbd',
+		),
+	);
+
+	$settings['style_formats'] = json_encode( apply_filters( 'foundation_style_formats', $style_formats ) );
+
+	return $settings;
+}
+
+add_filter( 'tiny_mce_before_init', 'foundation_style_formats' );
+
+/**
+ * Add the Styles dropdown to the visual editor
+ *
+ * @since [foundation] 1.0
+ */
+function foundation_add_mce_button( $buttons ) {
+	if ( ! in_array( 'styleselect', $buttons ) ) {
+		$buttons[] = 'styleselect';
+	}
+
+	return $buttons;
+}
+
+add_filter( 'mce_buttons_2', 'foundation_add_mce_button' );
+
+/**
  * Adds previous/next links to post edition window
  *
  * @since [foundation] 1.0

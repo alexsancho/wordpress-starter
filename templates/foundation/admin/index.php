@@ -62,6 +62,8 @@ define( 'BACKUPS', $theme_name.'_backups' );
  *
  * @since 1.0.0
  */
+global $pagenow;
+
 if ( is_admin() && isset( $_GET['activated'] ) && $pagenow == 'themes.php' )
 	add_action( 'admin_head', 'of_option_setup' );
 

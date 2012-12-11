@@ -2,30 +2,40 @@
 /**
  * The template for displaying Search Results pages.
  *
- * @category  Theme
- * @package   [starter]
- * @author    [Your Name]
- * @copyright 2012 [Your Name]
+ * @package starter
+ * @since starter 1.0
  */
 
-get_header();
+get_header(); ?>
 
-if ( have_posts() ):
-	?>
-	<header class="page-header">
-		<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'starter' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
-	</header>
-	<?php
-	/* Start the Loop */
-	while ( have_posts() ):
-		the_post();
+		<section id="primary" class="content-area">
+			<div id="content" class="site-content" role="main">
 
-		get_template_part( 'content', get_post_format() );
-	endwhile;
+			<?php if ( have_posts() ) : ?>
 
-	do_action( 'pagination' );
-else:
-	get_template_part( 'content', 'none' );
-endif;
+				<header class="page-header">
+					<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'starter' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
+				</header><!-- .page-header -->
 
-get_footer();
+				<?php starter_content_nav( 'nav-above' ); ?>
+
+				<?php /* Start the Loop */ ?>
+				<?php while ( have_posts() ) : the_post(); ?>
+
+					<?php get_template_part( 'content', 'search' ); ?>
+
+				<?php endwhile; ?>
+
+				<?php starter_content_nav( 'nav-below' ); ?>
+
+			<?php else : ?>
+
+				<?php get_template_part( 'no-results', 'search' ); ?>
+
+			<?php endif; ?>
+
+			</div><!-- #content .site-content -->
+		</section><!-- #primary .content-area -->
+
+<?php get_sidebar(); ?>
+<?php get_footer(); ?>

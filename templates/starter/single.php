@@ -1,31 +1,34 @@
 <?php
 /**
- * The single template file.
+ * The Template for displaying all single posts.
  *
- * @category  Theme
- * @package   [starter]
- * @author    [Your Name]
- * @copyright 2012 [Your Name]
+ * @package starter
+ * @since starter 1.0
  */
 
-get_header( get_post_format() );
+get_header(); ?>
 
-if ( have_posts() ):
-	while ( have_posts() ):
-		the_post();
+		<div id="primary" class="content-area">
+			<div id="content" class="site-content" role="main">
 
-		/* If you want to overload this in a child theme then include a file
-		 * called content-single.php and that will be used instead.
-		 */
-		 get_template_part( 'content', 'single' );
+			<?php while ( have_posts() ) : the_post(); ?>
 
-		 /* Display navigation to next/previous pages when applicable */
-		 do_action( 'pagination' );
+				<?php starter_content_nav( 'nav-above' ); ?>
 
-		 comments_template( '', true );
-	 endwhile;
-else:
-	 get_template_part( 'content', 'none' );
-endif;
+				<?php get_template_part( 'content', 'single' ); ?>
 
-get_footer( get_post_format() );
+				<?php starter_content_nav( 'nav-below' ); ?>
+
+				<?php
+					// If comments are open or we have at least one comment, load up the comment template
+					if ( comments_open() || '0' != get_comments_number() )
+						comments_template( '', true );
+				?>
+
+			<?php endwhile; // end of the loop. ?>
+
+			</div><!-- #content .site-content -->
+		</div><!-- #primary .content-area -->
+
+<?php get_sidebar(); ?>
+<?php get_footer(); ?>

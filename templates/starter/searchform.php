@@ -1,14 +1,13 @@
 <?php
 /**
- * The template for displaying the search form.
+ * The template for displaying search forms in starter
  *
- * @category  Theme
- * @package   [starter]
- * @author    [Your Name]
- * @copyright 2012 [Your Name]
+ * @package starter
+ * @since starter 1.0
  */
 ?>
-<form role="search" method="get" id="searchform" class="search" action="<?php echo home_url( '/' ); ?>">
-	<label class="assistive-text" for="s"><?php _e( 'Search', 'starter' ); ?></label>
-	<input name="s" id="s" value="<?php if ( is_search() ) { echo get_search_query(); } ?>" type="search" class="search-query" autocomplete="off" placeholder="<?php _e( 'Search', 'starter' ) ?>">
-</form>
+	<form method="get" id="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>" role="search">
+		<label for="s" class="assistive-text"><?php _e( 'Search', 'starter' ); ?></label>
+		<input type="text" class="field" name="s" value="<?php echo esc_attr( get_search_query() ); ?>" id="s" placeholder="<?php esc_attr_e( 'Search &hellip;', 'starter' ); ?>" />
+		<input type="submit" class="submit" name="submit" id="searchsubmit" value="<?php esc_attr_e( 'Search', 'starter' ); ?>" />
+	</form>

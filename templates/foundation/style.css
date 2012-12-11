@@ -5,9 +5,13 @@ Description: Use this theme to start your Theme development.
 Author: Your Name
 Author URI: http://example.com/
 Version: 1.0
+License: GNU General Public License
+License URI: license.txt
 Tags:
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
 */
 
 @import url('stylesheets/screen.css') screen;
 @import url('stylesheets/print.css') print;
-

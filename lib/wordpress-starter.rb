@@ -18,7 +18,7 @@ Compass::Frameworks.register('wordpress', :path => extension_path)
 # Date is in the form of YYYY-MM-DD
 module WordpressStarter
   VERSION = "0.2"
-  DATE = "2012-12-06"
+  DATE = "2012-12-10"
 end
 
 # This is where any custom SassScript should be placed. The functions will be
