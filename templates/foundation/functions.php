@@ -53,7 +53,7 @@ function foundation_setup() {
 
 	// Add support for a variety of post formats (http://codex.wordpress.org/Post_Formats)
 	// Child Themes inherit the post formats defined by the parent theme
-	add_theme_support( 'post-formats', array( 'aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat' ) );
+	add_theme_support( 'post-formats', array( 'aside', 'link', 'image', 'quote', 'status' ) );
 
 	// Add post thumbnails (http://codex.wordpress.org/Post_Thumbnails)
 	add_theme_support( 'post-thumbnails' );
@@ -1023,7 +1023,7 @@ function foundation_shortcode_caption( $atts, $content = null ) {
 		$caption = $match[2];
 	}
 
-	$id = $id ? $id : 'attachment_' . rand( 1, 999 );
+	$id    = $id ? $id : 'attachment_' . rand( 1, 999 );
 	$idtag = 'id="' . esc_attr( $id ) . '"';
 
 	$out[] = '<figure ' . $idtag . 'aria-describedby="figcaption_' . $id . '" class="post-image wp-caption ' . $align . '">';
@@ -1053,10 +1053,11 @@ function foundation_gallery_shortcode( $attr ) {
 		$i = 0;
 		$output[] = '<ul class="block-grid three-up">';
 		foreach ( $attachments as $attachment ) {
-			$src     = wp_get_attachment_image_src( $attachment->ID , 'full' );
-			$active  = ( $i == 0) ? ' active' : '';
-			$caption = wpautop( wptexturize( esc_attr( trim( strip_tags( $attachment->post_excerpt ) ) ) ) );
+			$src          = wp_get_attachment_image_src( $attachment->ID , 'full' );
+			$active       = ( $i == 0) ? ' active' : '';
+			$caption      = wpautop( wptexturize( esc_attr( trim( strip_tags( $attachment->post_excerpt ) ) ) ) );
 			$data_caption = $caption ? ' data-caption="' . $caption . '"' : '';
+
 			$output[] = '<li class="item' . $active . '">';
 			$output[] = '<a href="' . get_attachment_link( $attachment->ID ) . '">';
 			$output[] = '<img' . $data_caption . ' src="' . $src[0] . '" alt="' . esc_attr( trim( strip_tags( $attachment->post_title ) ) ) . '">';
@@ -1226,8 +1227,7 @@ function foundation_change_mce_options( $array ) {
 
 	if ( isset( $array['extended_valid_elements'] ) ) {
 		$array['extended_valid_elements'] .= ','.$ext;
-	}
-	else {
+	} else {
 		$array['extended_valid_elements'] = $ext;
 	}
 
@@ -1325,9 +1325,8 @@ add_filter( 'tiny_mce_before_init', 'foundation_style_formats' );
  * @since [foundation] 1.0
  */
 function foundation_add_mce_button( $buttons ) {
-	if ( ! in_array( 'styleselect', $buttons ) ) {
+	if ( ! in_array( 'styleselect', $buttons ) )
 		$buttons[] = 'styleselect';
-	}
 
 	return $buttons;
 }

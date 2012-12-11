@@ -53,7 +53,7 @@ function starter_setup() {
 
 	// Add support for a variety of post formats (http://codex.wordpress.org/Post_Formats)
 	// Child Themes inherit the post formats defined by the parent theme
-	add_theme_support( 'post-formats', array( 'aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat' ) );
+	add_theme_support( 'post-formats', array( 'aside', 'link', 'image', 'quote', 'status' ) );
 
 	// Add post thumbnails (http://codex.wordpress.org/Post_Thumbnails)
 	add_theme_support( 'post-thumbnails' );

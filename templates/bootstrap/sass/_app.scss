@@ -1,0 +1,10 @@
+// You custom settings file to override Bootstrap defaults
+@import "settings";
+
+// I gather this file is a starting point for the project.
+@import "bootstrap";
+
+// Include responsive Bootstrap styles
+// @import "bootstrap-responsive";
+
+@import "wordpress/defaults";

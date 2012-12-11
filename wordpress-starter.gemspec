@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
   # Gems Dependencies
   s.add_dependency("sass",    [">=3.2.0"])
   s.add_dependency("compass", [">= 0.12.2"])
+  s.add_dependency("bootstrap-sass", ["~> 2.2.1.1"])
   s.add_dependency("zurb-foundation", [">= 3.2.2"])
   s.add_dependency("susy",    ["~> 1.0.5"])
 end

@@ -58,6 +58,21 @@
 				</hgroup>
 			</header>
 			<div class="container row">
-				<?php wp_nav_menu( array( 'container' => 'nav', 'container_class' => 'two mobile-four columns', 'menu_class' => 'side-nav', 'theme_location' => 'primary', 'fallback_cb' => 'foundation_page_menu', 'walker' => new Foundation_Navigation() ) ); ?>
+				<div class="navbar">
+					<div class="navbar-inner">
+						<a class="brand" href="<?php echo site_url();?>"><?php bloginfo( 'name' );?></a>
+						<?php
+						wp_nav_menu(
+							array(
+								'container'       => '',
+								'menu_class'      => 'nav',
+								'theme_location'  => 'primary',
+								'fallback_cb'     => 'foundation_page_menu',
+								'walker'          => new Bootstrap_Walker_Nav_Menu(),
+							)
+						);
+						?>
+					</div>
+				</div>
 				<section class="content ten mobile-four columns" role="document">
 					<div class="main eight mobile-four columns" role="main">

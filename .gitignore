@@ -1,2 +1,5 @@
 .sass-cache
 *.gem
+screen.css
+print.css
+Gemfile.lock

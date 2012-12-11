@@ -1,6 +1,3 @@
-(function($, window, undefined) {
-	'use strict';
+jQuery(function($) {
 
-	var $doc = $(document),
-		Modernizr = window.Modernizr;
-})(jQuery, this);
+})(jQuery);

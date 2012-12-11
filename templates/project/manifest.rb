@@ -96,7 +96,7 @@ file 'images/bg/bg10.png'
 file 'images/bg/bg11.png'
 
 file 'javascripts/app.js'
-file 'javascripts/moderninzr.min.js'
+file 'javascripts/modernizr.min.js'
 
 # Wordpress Import
 file '404.php'
