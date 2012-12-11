@@ -485,10 +485,9 @@ function is_element_empty( $element ) {
  * @since [foundation] 1.0
  */
 function foundation_page_menu() {
-
 	$args = array(
 		'sort_column' => 'menu_order, post_title',
-		'menu_class'  => 'twelve columns',
+		'menu_class'  => 'side-nav two mobile-four columns',
 		'include'     => '',
 		'exclude'     => '',
 		'echo'        => true,
@@ -505,13 +504,13 @@ function foundation_page_menu() {
  *
  * @since [foundation] 1.0
  */
-class foundation_navigation extends Walker_Nav_Menu {
+class Foundation_Navigation extends Walker_Nav_Menu {
 	function start_lvl( &$output, $depth ) {
 		$indent  = str_repeat( "\t", $depth );
 		$output .= "\n$indent<ul class=\"flyout\">\n";
 	}
 
-	function display_element( $element, &$children_elements, $max_depth, $depth=0, $args, &$output ) {
+	function display_element( $element, &$children_elements, $max_depth, $depth = 0, $args, &$output ) {
 		$id_field = $this->db_fields['id'];
 		if ( ! empty( $children_elements[ $element->$id_field ] ) ) {
 			$element->classes[] = 'has-flyout';
@@ -878,7 +877,7 @@ function pagination( $query = false ) {
 							$links[] = '<li class="arrow">' . $link . '</li>';
 						}
 						elseif ( strpos( $link, 'current' ) !== false ) {
-							preg_match( '/<span[^>]+>(\d+)<\/span>/i', $link , $m);
+							preg_match( '/<span[^>]+>(\d+)<\/span>/i', $link , $m );
 
 							$links[] = '<li class="current"><a href="">' . $m[1] . '</a></li>';
 						}
@@ -1022,9 +1021,7 @@ function foundation_shortcode_caption( $atts, $content = null ) {
 		$caption = $match[2];
 	}
 
-	if ( $id ) {
-		$idtag = 'id="' . esc_attr( $id ) . '" ';
-	}
+	$idtag = ( $id ) ? 'id="' . esc_attr( $id ) . '" ' : '';
 
 	$out[] = '<figure ' . $idtag . 'aria-describedby="figcaption_' . $id . '" class="post-image wp-caption ' . $align . '">';
 	$out[] = do_shortcode( $content );
@@ -1036,6 +1033,42 @@ function foundation_shortcode_caption( $atts, $content = null ) {
 
 add_shortcode( 'wp_caption', 'foundation_shortcode_caption' );
 add_shortcode( 'caption', 'foundation_shortcode_caption' );
+
+/**
+ * Gallery shortcode.
+ *
+ * @since [foundation] 1.0
+ */
+function foundation_gallery_shortcode( $attr ) {
+	global $post, $wp_locale;
+
+	$output = array();
+
+	$args = array( 'post_type' => 'attachment', 'numberposts' => - 1, 'post_status' => null, 'post_parent' => $post->ID );
+	$attachments = get_posts( $args );
+	if ( $attachments ) {
+		$i = 0;
+		$output[] = '<ul class="block-grid three-up">';
+		foreach ( $attachments as $attachment ) {
+			$active = ( $i == 0) ? ' active' : '';
+			$caption = wpautop( wptexturize( esc_attr( trim( strip_tags( $attachment->post_excerpt ) ) ) ) );
+			$data_caption = $caption ? ' data-caption="' . $caption . '"' : '';
+			$output[] = '<li class="item' . $active . '">';
+			$output[] = '<a href="' . get_attachment_link( $attachment->ID ) . '">';
+			$output[] = '<img' . $data_caption . ' src="' . wp_get_attachment_image_src( $attachment->ID , 'full' ) . '" alt="' . esc_attr( trim( strip_tags( $attachment->post_title ) ) ) . '">';
+			$output[] = '</a>';
+			$output[] = '</li>';
+			++$i;
+		}
+		$output[] = '</ul>';
+	}
+
+	return implode( "\n", $output );
+}
+
+// removes standard shortcode
+remove_shortcode( 'gallery', 'gallery_shortcode' );
+add_shortcode( 'gallery', 'foundation_gallery_shortcode' );
 
 
 /* ADMIN STUFF */

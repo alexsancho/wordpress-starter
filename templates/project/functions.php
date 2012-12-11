@@ -961,9 +961,7 @@ function starter_shortcode_caption( $atts, $content = null ) {
 		$caption = $match[2];
 	}
 
-	if ( $id ) {
-		$idtag = 'id="' . esc_attr( $id ) . '" ';
-	}
+	$idtag = ( $id ) ? 'id="' . esc_attr( $id ) . '" ' : '';
 
 	$out[] = '<figure ' . $idtag . 'aria-describedby="figcaption_' . $id . '" class="post-image wp-caption ' . $align . '">';
 	$out[] = do_shortcode( $content );
@@ -1163,7 +1161,6 @@ function starter_add_navigation_edit_posts() {
 
 		$post_types['post'] = 'post';
 		$post_types['page'] = 'page';
-
 		if ( is_object( $post ) and in_array( $post->post_type, $post_types ) ) {
 			$wtf = array( true, false );
 			foreach ( $wtf as $prev ) {

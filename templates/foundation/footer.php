@@ -12,7 +12,7 @@
 				<?php get_sidebar(); ?>
 			</section>
 		</div>
-		<footer class="footer" role="contentinfo">
+		<footer class="footer twelve mobile-four columns" role="contentinfo">
 			<?php do_action( 'foundation_footer' ); ?>
 			<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'foundation' ) ); ?>" title="<?php esc_attr_e( 'Semantic Personal Publishing Platform', 'foundation' ); ?>"><?php printf( __( 'Proudly powered by %s', 'foundation' ), 'WordPress' ); ?></a>
 		</footer>

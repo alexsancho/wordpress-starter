@@ -49,15 +49,15 @@
 	</head>
 	<body <?php body_class(); ?>>
 		<div class="page">
-			<header class="header" role="banner">
-				<hgroup>
+			<header class="header row" role="banner">
+				<hgroup class="twelve mobile-four columns">
 					<h1>
 						<a href="<?php echo site_url();?>"><span class="assistive-text"><?php bloginfo( 'name' );?></span></a>
 					</h1>
 					<h2 class="assistive-text"><?php bloginfo( 'description' );?></h2>
 				</hgroup>
 			</header>
-			<div class="container">
-				<?php wp_nav_menu( array( 'container' => 'nav', 'container_class' => 'twelve columns', 'menu_class' => 'nav-bar radius', 'theme_location' => 'primary', 'fallback_cb' => 'foundation_page_menu', 'walker' => new foundation_navigation() ) ); ?>
-				<section class="content" role="document">
-					<div class="main" role="main">
+			<div class="container row">
+				<?php wp_nav_menu( array( 'container' => 'nav', 'container_class' => 'two mobile-four columns', 'menu_class' => 'side-nav', 'theme_location' => 'primary', 'fallback_cb' => 'foundation_page_menu', 'walker' => new Foundation_Navigation() ) ); ?>
+				<section class="content ten mobile-four columns" role="document">
+					<div class="main eight mobile-four columns" role="main">
