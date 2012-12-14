@@ -18,8 +18,8 @@ Compass::Frameworks.register('wordpress', :path => extension_path)
 # a prerelease version
 # Date is in the form of YYYY-MM-DD
 module WordpressStarter
-  VERSION = "0.3"
-  DATE = "2012-12-11"
+  VERSION = "0.4"
+  DATE = "2012-12-14"
 end
 
 # This is where any custom SassScript should be placed. The functions will be

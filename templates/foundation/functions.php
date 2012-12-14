@@ -1136,7 +1136,7 @@ function foundation_bar_menu( $wp_admin_bar ) {
 	 */
 	$wp_admin_bar->add_menu(
 		array(
-			'id'  => 'favorites',
+			'id'     => 'favorites',
 			'parent' => 'top-secondary', // puts it on the right-hand side
 			'title'  => __( 'Favorites', 'foundation' ),
 		)
@@ -1150,10 +1150,10 @@ function foundation_bar_menu( $wp_admin_bar ) {
 	if ( current_user_can( 'manage_options' ) ) {
 		$wp_admin_bar->add_menu(
 			array(
-				'id'  => 'all-settings',
+				'id'     => 'all-settings',
 				'parent' => 'favorites',
-				'title'  => __( 'Options', 'foundation' ),
-				'href'  => admin_url( 'options.php' ),
+				'title'  => __( 'Theme Options', 'foundation' ),
+				'href'   => admin_url( 'themes.php?page=optionsframework' ),
 			)
 		);
 	}
@@ -1161,21 +1161,21 @@ function foundation_bar_menu( $wp_admin_bar ) {
 	// This one goes to the list of the current user's posts
 	$wp_admin_bar->add_menu(
 		array(
-			'id'  => 'my-posts',
+			'id'     => 'my-posts',
 			'parent' => 'favorites',
 			'title'  => __( 'My Posts', 'foundation' ),
-			'href'  => admin_url( 'edit.php?post_type=post&author=' . get_current_user_id() ),
+			'href'   => admin_url( 'edit.php?post_type=post&author=' . get_current_user_id() ),
 		)
 	);
 
 	// MySQL query and script execution timer output
 	$wp_admin_bar->add_menu(
 		array(
-			'id'  => 'do_query_bar',
+			'id'     => 'do_query_bar',
 			'parent' => 'top-secondary', // puts it on the right-hand side
 			'title'  => get_num_queries() . 'Q - ' . timer_stop() . 's', // link title
-			'href'  => '#',
-			'meta'  => false,
+			'href'   => '#',
+			'meta'   => false,
 		)
 	);
 }
