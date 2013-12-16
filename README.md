@@ -87,3 +87,7 @@ Copyright
 ===========
 
 Copyright (c) 2012 Alex Sancho. See LICENSE for details.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/alexsancho/wordpress-starter/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
